@@ -1,0 +1,28 @@
+{
+  "name": "football.loc",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/zrayev/sf_football.svg?branch=dev)](https://travis-ci.org/zrayev/sf_football)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zrayev/sf_football.git"
+  },
+  "author": "zrayev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zrayev/sf_football/issues"
+  },
+  "dependencies": {
+    "bower": "^1.4.2",
+    "gulp": "^3.9.0",
+    "gulp-clean": "~0.3.1",
+    "gulp-concat": "~2.6.0",
+    "gulp-less": "~3.0.5",
+    "gulp-uglify": "~1.5.1",
+    "less": "~2.5.3",
+    "gulp-install": "~0.6.0"
+  }
+}

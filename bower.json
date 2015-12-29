@@ -1,0 +1,23 @@
+{
+  "name": "football.loc",
+  "description": "[![Build Status](https://travis-ci.org/zrayev/sf_football.svg?branch=dev)](https://travis-ci.org/zrayev/sf_football)",
+  "main": "index.js",
+  "authors": [
+    "zrayev"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zrayev/sf_football",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "fontawesome#~4.5.0",
+    "bootstrap-sass": "~3.3.6"
+  }
+}
