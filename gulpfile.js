@@ -1,11 +1,7 @@
-//var gulp = require('gulp');
-//var gulpLoadPlugins = require('gulp-load-plugins');
-//var plugins = gulpLoadPlugins();
 var gulp = require('gulp'),
     less = require('gulp-less'),
     concatJs = require('gulp-concat'),
-    minifyJs = require('gulp-uglify'),
-    clean = require('gulp-clean');
+    minifyJs = require('gulp-uglify');
 
 gulp.task('less', function() {
     return gulp.src(['web-src/less/*.less'])
@@ -38,12 +34,7 @@ gulp.task('pages-js', function() {
         .pipe(gulp.dest('web/bundles/app/js/'));
 });
 
-gulp.task('clean', function () {
-    return gulp.src(['web/bundles/app/css/*', 'web/bundles/app/js/*', 'web/bundles/app/images/*'])
-        .pipe(clean());
-});
-
-gulp.task('default', ['clean'], function () {
+gulp.task('default', function () {
     var tasks = ['less', 'images', 'lib-js', 'pages-js'];
     tasks.forEach(function (val) {
         gulp.start(val);
