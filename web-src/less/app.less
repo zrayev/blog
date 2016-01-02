@@ -1,33 +1,79 @@
 //@import "../../bower_components/bootstrap/less/bootstrap.less";
-@color: #223366;
 
-body{
-  background: #b4b472;
-  color: #131313;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-size: large;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:10px;
 }
 
-h1{
-  color:@color;
-  letter-spacing: 2px;
+.menu {
+    line-height:2em;
+    background-color: silver;
+    height: auto;
+    width: 8%;
+    float:right;
+    padding:30px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-h2{
-  color: #2f2f2f;
+section {
+    width: 85%;
+    li {list-style:none;}
+    font-family: sans-serif;
+    color: maroon;
+    float: inherit;
+    padding:10px;
+    background-color: silver;
+    margin-top: 10px;
 }
 
-form{
-  width: auto;
-  position: static;
-  margin: 0 0 20px 0;
-  background: #ff8000;
-  padding: 5px;
-  border: dashed 2px black;
-  float: left;
-  top: 40px;
-  left: 10px;
-  font-size: medium;
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    font-family: monospace;
+
+}
+blockquote {
+    color: #440044;
+    text-align: left;
+    font-style: italic;
+}
+
+a:link{
+    color: coral;
+}
+a:visited{
+    color: brown;
+}
+
+.nav{
+    width: 85%;
+    margin:0 0 0 0;
+    overflow:hidden;
+    background: #000000;
+    ul{list-style:none;}
+    a{text-decoration:none;}
+}
+.nav nav{
+    float:left;
+}
+.nav ul li{
+    float:left;
+}
+.nav ul li a{
+    display:block;
+    padding:6px 10px;
+    color: #67b168;
+    font-size:1.2em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.nav ul li a:hover{
+    background:#E44D26;
+    color: #000000;
 }

@@ -2,24 +2,28 @@
 
 {% block title %} Admin {% endblock %}
 
-{% block body %}
+{% block header %}
     <h1>Admin page</h1>
+{% endblock header %}
+
+{% block section %}
+
     <table border="2 px">
         <tr>
-           <td>Add post</td> <td><a href="{{ path('post_create') }}">create</a></td>
+            <td>Додати запис</td>
+            <td><a href="{{ path('post_create') }}"> додати </a></td>
         </tr>
         <tr>
-            <td>Edit post</td>
+            <td>Редагувати запис</td>
+            {#<td><a href=" {{ path('post_edit', {'id': post.id}) }} ">edit</a></td>#}
         </tr>
         <tr>
-            <td>Delete post</td>
+            <td>Видалити запис</td>
+            {#<td><a href="{{ path('post_delete', {'id': post.id}) }}"> delete </a> </td>#}
+
         </tr>
         <tr>
-            <td>All posts this blogger</td>
+            <td>Всі пости автора</td>
         </tr>
     </table>
-{% endblock body %}
-
-
-{#в адмінці можна створювати, редагувати,#}
-{#видаляти статті, переглянути список статтей автора#}
+{% endblock section %}

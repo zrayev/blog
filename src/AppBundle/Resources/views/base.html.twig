@@ -8,9 +8,39 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}"/>
         <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
-
     </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <header>
+        {% block header %}{% endblock %}
+
+    <div class="nav">
+        <nav>
+            <ul>
+                <li><a href={{ path('index') }} >Головна</a></li>
+                <li><a href={{ path('admin') }}>Адміністрування</a></li>
+                <li><a href="#" >2222</a></li>
+                <li><a href="#" >3333</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    </header>
+    <div class="menu">
+        {% block menu %}
+            TAG CLOUD
+            <hr>
+            5 самих популярних статей
+            <hr>
+            5 останніх коментарів
+        {% endblock %}
+    </div>
+    <section>
+        {% block section %}{% endblock %}
+    </section>
+    <footer>
+        {% block footer %}
+            Copyright © Dmitry Zrayev
+        {% endblock %}
+    </footer>
 </html>
+

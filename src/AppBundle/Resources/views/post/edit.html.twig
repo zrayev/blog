@@ -1,10 +1,9 @@
 {% extends 'AppBundle::base.html.twig' %}
-
-{% block title %}Створити{% endblock %}
 {% block header %}
-    <h2>Створити {{ post.title }}</h2>
+    <h2>Редагувати {{ post.title }}</h2>
 {% endblock header %}
 {% block section %}
+    <h2>Edit post</h2>
     {{ form_start(form) }}
     {{ form_end(form) }}
-{% endblock body %}
+{% endblock %}

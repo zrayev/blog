@@ -1,9 +1,10 @@
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block body %}
-    <h1>Post {{ post.title }}</h1>
+{% block header %}
+    <h2>Post {{ post.title }}</h2>
+{% endblock header %}
+{% block section %}
     <p>{{ post.body }}</p>
     <p>Published: {{ post.blogger }}</p>
     <p>Category: {{ post.category }}</p>
-
 {% endblock %}
