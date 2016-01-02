@@ -1,0 +1,6 @@
+AppBundle\Entity\Post:
+  post_{1..10}:
+    title: <text(200)>
+    body: <text(2000)>
+    bloger: <name()>
+    category: <text(100)>

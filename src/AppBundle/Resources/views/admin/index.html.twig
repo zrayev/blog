@@ -1,0 +1,25 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %} Admin {% endblock %}
+
+{% block body %}
+    <h1>Admin page</h1>
+    <table border="2 px">
+        <tr>
+           <td>Add post</td> <td><a href="{{ path('post_create') }}">create</a></td>
+        </tr>
+        <tr>
+            <td>Edit post</td>
+        </tr>
+        <tr>
+            <td>Delete post</td>
+        </tr>
+        <tr>
+            <td>All posts this blogger</td>
+        </tr>
+    </table>
+{% endblock body %}
+
+
+{#в адмінці можна створювати, редагувати,#}
+{#видаляти статті, переглянути список статтей автора#}

@@ -1,0 +1,9 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Post {{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <p>Published: {{ post.blogger }}</p>
+    <p>Category: {{ post.category }}</p>
+
+{% endblock %}
