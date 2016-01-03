@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Post;
-use AppBundle\Form\PostType;
 
 class PostController extends Controller
 {
@@ -31,8 +31,13 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function createAction(Request $request)
     {
+//        $post = new Post();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(PostType::class);
         $form->add('save', SubmitType::class, array('label' => 'Save'));
@@ -42,16 +47,98 @@ class PostController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
+
                 $post = $form->getData();
+               // $em = $this->getDoctrine()->getManager();
+                $slug = $this->get('app.slugger')->slugify($post->getTitle());
+                $post->setSlug($slug);
                 $em->persist($post);
+//                $em->persist($slug);
                 $em->flush();
 
-                return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('admin');
             }
         }
 
-        return $this->render('AppBundle:post:create.html.twig', [
+        return $this->render('@App/post/create.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return Response
+     */
+    public function editAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em
+            ->getRepository('AppBundle:Post')
+            ->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No post found for id ' . $id
+            );
+        }
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->add('save', SubmitType::class, array('label' => 'Edit'));
+
+         if ($request->getMethod() === 'POST') {
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em->flush();
+
+            return $this->redirectToRoute('index');
+            }
+        }
+
+        return $this->render('@App/post/edit.html.twig', [
+            'form' => $form->createView(),
+            'post' => $post,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return Response
+     */
+    public function deleteAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em
+            ->getRepository('AppBundle:Post')
+            ->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No post found for id ' . $id
+            );
+        }
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->add('save', SubmitType::class, array('label' => 'Delete'));
+
+         if ($request->getMethod() === 'POST') {
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em->remove($post);
+                $em->flush();
+
+            return $this->redirectToRoute('admin');
+            }
+        }
+
+        return $this->render('@App/post/delete.html.twig', [
+            'form' => $form->createView(),
+            'post' => $post,
         ]);
     }
 }

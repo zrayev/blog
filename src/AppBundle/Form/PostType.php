@@ -21,7 +21,6 @@ class PostType extends AbstractType
             ->add('body', TextType::class)
             ->add('blogger', TextType::class)
             ->add('category', TextType::class)
-            ->add('slug', TextType::class)
         ;
     }
 
