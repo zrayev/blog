@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tag
@@ -29,11 +30,25 @@ class Tag
     private $name;
 
     /**
+     * @var Post[]
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", inversedBy="tags")
+     */
+    private $posts;
+
+    /**
     * @var string
     *
     * @ORM\Column(name="slug", type="string", length=255)
     */
     private $slug;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -84,6 +99,25 @@ class Tag
     public function setSlug($value)
     {
         $this->slug = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setPosts($value)
+    {
+        $this->posts = $value;
 
         return $this;
     }

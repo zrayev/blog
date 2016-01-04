@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Author
@@ -29,12 +30,20 @@ class Author
     private $name;
 
     /**
-     * @var string
+     * @var Post[]
      *
-     * @ORM\Column(name="posts", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="author", cascade={"persist", "remove"})
      */
     private $posts;
 
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -71,27 +80,23 @@ class Author
     }
 
     /**
-     * Set posts
-     *
-     * @param string $posts
-     *
-     * @return Author
-     */
-    public function setPosts($posts)
-    {
-        $this->posts = $posts;
-
-        return $this;
-    }
-
-    /**
-     * Get posts
-     *
-     * @return string
+     * @return Post[]
      */
     public function getPosts()
     {
         return $this->posts;
     }
+
+    /**
+     * @param Post[] $value
+     * @return $this
+     */
+    public function setPosts($value)
+    {
+        $this->posts = $value;
+
+        return $this;
+    }
+
 }
 

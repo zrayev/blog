@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
@@ -38,14 +39,14 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="posts")
      */
     private $author;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="posts")
      */
     private $category;
 
@@ -56,6 +57,20 @@ class Post
      */
     private $slug;
 
+    /**
+     * @var Tag[]
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="posts")
+     */
+    private $tags;
+
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -116,30 +131,6 @@ class Post
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return Post
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * @return string
      */
     public function getSlug()
@@ -161,6 +152,25 @@ class Post
     /**
      * @return string
      */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setCategory($value)
+    {
+        $this->category = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getAuthor()
     {
         return $this->author;
@@ -173,6 +183,25 @@ class Post
     public function setAuthor($value)
     {
         $this->author = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return Tag[]
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag[] $value
+     * @return $this
+     */
+    public function setTags($value)
+    {
+        $this->tags = $value;
 
         return $this;
     }

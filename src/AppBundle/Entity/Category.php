@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -36,12 +37,21 @@ class Category
     private $slug;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="post", type="string", length=255)
-    */
-    private $post;
+     * @var Post[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="category", cascade={"persist", "remove"})
+     */
 
+    private $posts;
+
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -116,6 +126,25 @@ class Category
     public function setSlug($value)
     {
         $this->slug = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post[] $value
+     * @return $this
+     */
+    public function setPosts($value)
+    {
+        $this->posts = $value;
 
         return $this;
     }
