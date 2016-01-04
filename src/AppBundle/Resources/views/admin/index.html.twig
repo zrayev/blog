@@ -14,13 +14,8 @@
             <td><a href="{{ path('post_create') }}"> додати </a></td>
         </tr>
         <tr>
-            <td>Редагувати запис</td>
-            <td><a href=" {{ path('post_edit', {'id': 'x'}) }} ">edit</a></td>
-        </tr>
-        <tr>
-            <td>Видалити запис</td>
-            <td><a href="{{ path('post_delete', {'id': 'x'}) }}"> delete </a> </td>
-
+            <td>Редагувати чи видалити запис</td>
+            <td><a href="{{ path('posts_refactor') }}">обрати</a></td>
         </tr>
         <tr>
             <td>Всі пости автора</td>

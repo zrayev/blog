@@ -12,6 +12,17 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:admin:index.html.twig');
+        return $this->render('@App/admin/index.html.twig');
+    }
+
+    public function refactorAction()
+    {
+    $posts = $this->getDoctrine()
+        ->getRepository('AppBundle:Post')
+        ->findAll();
+
+        return $this->render('@App/admin/posts_refactor.html.twig', [
+            'posts'=>$posts,
+        ]);
     }
 }

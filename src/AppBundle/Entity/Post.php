@@ -38,9 +38,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="blogger", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=255)
      */
-    private $blogger;
+    private $author;
 
     /**
      * @var string
@@ -50,10 +50,10 @@ class Post
     private $category;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="slug", type="string", length=255)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
     private $slug;
 
 
@@ -161,18 +161,18 @@ class Post
     /**
      * @return string
      */
-    public function getBlogger()
+    public function getAuthor()
     {
-        return $this->blogger;
+        return $this->author;
     }
 
     /**
      * @param string $value
      * @return $this
      */
-    public function setBlogger($value)
+    public function setAuthor($value)
     {
-        $this->blogger = $value;
+        $this->author = $value;
 
         return $this;
     }

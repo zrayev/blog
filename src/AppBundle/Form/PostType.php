@@ -19,7 +19,7 @@ class PostType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('body', TextType::class)
-            ->add('blogger', TextType::class)
+            ->add('author', TextType::class)
             ->add('category', TextType::class)
         ;
     }

@@ -93,7 +93,7 @@ class PostController extends Controller
             if ($form->isValid()) {
                 $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('posts_refactor');
             }
         }
 
@@ -132,7 +132,7 @@ class PostController extends Controller
                 $em->remove($post);
                 $em->flush();
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('posts_refactor');
             }
         }
 

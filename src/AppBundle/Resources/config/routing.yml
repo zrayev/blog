@@ -6,6 +6,10 @@ post_create:
     path:      post/create
     defaults:  { _controller: AppBundle:Post:create }
 
+posts_refactor:
+    path:      post/refactor
+    defaults:  { _controller: AppBundle:Admin:refactor }
+
 post_edit:
     path:      post/edit/{id}
     defaults:  { _controller: AppBundle:Post:edit }
