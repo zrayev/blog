@@ -1,13 +1,12 @@
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block title %} Admin {% endblock %}
+{% block title %} Адміністрування {% endblock %}
 
-{% block header %}
-    <h1>Admin page</h1>
-{% endblock header %}
+{% block h2 %}
+    <h2>Адміністрування</h2>
+{% endblock %}
 
 {% block section %}
-
     <table border="2 px">
         <tr>
             <td>Додати запис</td>
@@ -16,9 +15,6 @@
         <tr>
             <td>Редагувати чи видалити запис</td>
             <td><a href="{{ path('posts_refactor') }}">обрати</a></td>
-        </tr>
-        <tr>
-            <td>Всі пости автора</td>
         </tr>
     </table>
 {% endblock section %}

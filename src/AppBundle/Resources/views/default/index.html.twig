@@ -1,12 +1,18 @@
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block header %}
-    <h1>My blog</h1>
-{% endblock header %}
+{% block h2 %}
+        <h2>Всі записи:</h2>
+{% endblock %}
 {% block section %}
-    <h2>All posts:</h2>
     {% for post in posts %}
         <li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>
-        <li><blockquote>{{ post.body }}</blockquote></li>
+        <li><blockquote>{{ post.body }} </blockquote></li>
+    {% else %}
+        <li>Постів немає</li>
     {% endfor %}
+    <form action="{{ path('post_search') }}">
+    <p><b>Пошук записів:</b></p>
+    <p><input type="text" title="title">
+    <p><input type="submit"></p>
+    </form>
 {% endblock %}

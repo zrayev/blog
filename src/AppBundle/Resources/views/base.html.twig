@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Blog{% endblock %}</title>
+        <title>
+            {% block title %}Blog{% endblock %}
+        </title>
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -10,20 +12,23 @@
         <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
     </head>
     <header>
-        {% block header %}{% endblock %}
-
-    <div class="nav">
-        <nav>
-            <ul>
-                <li><a href={{ path('index') }} >Головна</a></li>
-                <li><a href={{ path('admin') }}>Адміністрування</a></li>
-                <li><a href="#" >2222</a></li>
-                <li><a href="#" >3333</a></li>
-            </ul>
-        </nav>
-    </div>
-
-
+        {% block header %}
+        <h1>Мій блог</h1>
+        {% endblock %}
+            <div class="nav">
+                <nav>
+                    <ul>
+                        <li><a href={{ path('index') }} >Головна</a></li>
+                        <li><a href={{ path('admin') }}>Адміністрування</a></li>
+                        <li><a href="{{ path('authors') }}" >Автори</a></li>
+                        <li><a href="#" >-----------</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="h2">
+                {% block h2 %}
+                {% endblock %}
+            </div>
     </header>
     <div class="menu">
         {% block menu %}
