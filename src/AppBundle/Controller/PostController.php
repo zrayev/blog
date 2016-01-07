@@ -141,4 +141,26 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
+
+    public function searchAction(Request $request)
+    {
+        $title = $request->query->get('title');
+        $this->getDoctrine()->getRepository('AppBundle:Post')->findByTitleQuery($title);
+
+
+//
+//                $name = $request->query->get('name');
+//        $paginator  = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate(
+//        $this->getDoctrine()->getRepository('AppBundle:Player')->findByNameQuery($name), /* query NOT result */
+//        $request->query->getInt('page', 1)/*page number*/,
+//        5/*limit per page*/
+//        );
+//
+
+
+        return $this->render('@App/post/search.html.twig', [
+            'title' => $title,
+        ]);
+    }
 }

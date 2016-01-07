@@ -2,9 +2,11 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Tests\Extension\Core\Type\CheckboxTypeTest;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
@@ -19,8 +21,19 @@ class PostType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('body', TextType::class)
-            ->add('author', TextType::class)
-            ->add('category', TextType::class)
+            ->add('author', EntityType::class,[
+                'class' => 'AppBundle\Entity\Author',
+                'choice_label' => 'name'
+            ])
+            ->add('category', EntityType::class,[
+                'class' => 'AppBundle\Entity\Category',
+                'choice_label' => 'name'
+            ])
+
+//            ->add('tags', EntityType::class,[
+//                'class' => 'AppBundle\Entity\Tag',
+//                'choice_label' => 'name'
+//            ])
         ;
     }
 
