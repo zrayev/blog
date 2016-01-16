@@ -4,12 +4,13 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class PostType extends AbstractType
+class CommentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,21 +19,13 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('user', TextType::class)
             ->add('body', TextType::class)
-            ->add('author', EntityType::class,[
-                'class' => 'AppBundle\Entity\Author',
-                'choice_label' => 'name'
+            ->add('rating', IntegerType::class)
+            ->add('post', EntityType::class,[
+                'class' => 'AppBundle\Entity\Post',
+                'choice_label' => 'title'
             ])
-            ->add('category', EntityType::class,[
-                'class' => 'AppBundle\Entity\Category',
-                'choice_label' => 'name'
-            ])
-
-//            ->add('tags', EntityType::class,[
-//                'class' => 'AppBundle\Entity\Tag',
-//                'choice_label' => 'name'
-//            ])
         ;
     }
 
@@ -42,7 +35,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Post'
+            'data_class' => 'AppBundle\Entity\Comment'
         ]);
     }
 }

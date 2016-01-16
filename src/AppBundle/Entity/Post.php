@@ -187,13 +187,13 @@ class Post
         return $this;
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function __toString()
-//    {
-//        return $this->getAuthor;
-//    }
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getAuthor();
+    }
 
     /**
      * @return Tag[]

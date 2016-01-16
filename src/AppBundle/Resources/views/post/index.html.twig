@@ -6,6 +6,9 @@
 
 {% block section %}
     <p>{{ post.body }}</p>
-    {#<p>Published: {{ post.author }}</p>#}
-    {#<p>Category: {{ post.category }}</p>#}
+    {#<p>Автор: {{ post.author }}</p>#}
+    {#<p>Категорія: {{ post.category }}</p>#}
+
+    {#{{ include('@App/comment/index.html.twig', {comment.body: 'comment.body'}) }}#}
+    <li><a href="{{ path('comment_create') }}">Коментувати</a></li>
 {% endblock %}
