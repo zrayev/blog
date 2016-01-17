@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -27,6 +28,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255,min=5)
      */
     private $title;
 
@@ -34,6 +37,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     * @Assert\NotBlank()
      */
     private $body;
 
@@ -59,7 +63,7 @@ class Post
 
     /**
      * @var Tag[]
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="posts")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
      */
     private $tags;
 
@@ -204,14 +208,6 @@ class Post
     }
 
     /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getAuthor();
-    }
-
-    /**
      * @return Tag[]
      */
     public function getTags()
@@ -264,6 +260,18 @@ class Post
     public function setUpdated($value)
     {
         $this->updated = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param Tag $value
+     * @return $this
+     */
+    public function addTag($value)
+    {
+        $this->tags[] = $value;
+        $value->addPost($this);
 
         return $this;
     }

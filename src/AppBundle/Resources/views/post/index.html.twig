@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block section %}
-    <p>{{ post.body }}</p>
-    {#<p>Автор: {{ post.author }}</p>#}
-    {#<p>Категорія: {{ post.category }}</p>#}
-
+    <p>{{ post.body|raw }}</p>
+    <p>Автор: {{ post.author.name }}</p>
+    <p>Категорія: {{ post.category }}</p>
+    <p>foo{{ post.tags|join(', ') }}</p>
     {#{{ include('@App/comment/index.html.twig', {comment.body: 'comment.body'}) }}#}
     <li><a href="{{ path('comment_create') }}">Коментувати</a></li>
 {% endblock %}

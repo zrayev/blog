@@ -1,0 +1,9 @@
+{% for post in pagination %}
+    <li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>
+    <li><blockquote>{{ post.body|raw }} </blockquote></li>
+    <hr>
+{% endfor %}
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination, 'AppBundle:default:pagination.html.twig') }}
+</div>

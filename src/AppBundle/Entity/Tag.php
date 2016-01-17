@@ -31,16 +31,9 @@ class Tag
 
     /**
      * @var Post[]
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="tags")
      */
     private $posts;
-
-    /**
-    * @var string
-    *
-    * @ORM\Column(name="slug", type="string", length=255)
-    */
-    private $slug;
 
     /**
      *
@@ -87,25 +80,6 @@ class Tag
     /**
      * @return string
      */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setSlug($value)
-    {
-        $this->slug = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getPosts()
     {
         return $this->posts;
@@ -118,6 +92,22 @@ class Tag
     public function setPosts($value)
     {
         $this->posts = $value;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * @param Post $value
+     * @return $this
+     */
+    public function addPost($value)
+    {
+        $this->posts[] = $value;
 
         return $this;
     }

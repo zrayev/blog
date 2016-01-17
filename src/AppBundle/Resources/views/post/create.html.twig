@@ -1,10 +1,18 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block title %}Створення{% endblock %}
-
+{% block javascripts %}
+     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+      tinymce.init({
+        selector: 'textarea'
+      });
+      </script>
+{% endblock %}
 {% block h2 %}
     <h2>Створити пост</h2>
 {% endblock %}
+
 {% block section %}
     {{ form_start(form) }}
     {{ form_end(form) }}

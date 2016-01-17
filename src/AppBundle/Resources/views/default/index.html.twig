@@ -1,19 +1,39 @@
 {% extends 'AppBundle::base.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/js/jquery.jscroll.min.js') }}"></script>
+    <script>
+        $('document').ready(function () {
+            $('.scroll').jscroll({
+                loadingHtml: '<img src="{{ asset('bundles/app/img/ajax-loader.gif') }}" alt="Loading" /> Loading...',
+                padding: 20,
+                nextSelector: '.next a',
+                autoTrigger: true
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block h2 %}
         <h2>{{ "now"|date(null, "Europe/Kiev") }}</h2>
 {% endblock %}
 {% block section %}
-    {% for post in posts %}
-        <li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>
-        <li><blockquote>{{ post.body }} </blockquote></li>
-        <hr>
-    {% else %}
-        <li>Постів немає</li>
-    {% endfor %}
     <form action="{{ path('post_search') }}">
     <p><b>Пошук записів:</b></p>
-    <p><input type="text" title="title">
+    <p><input type="text" name="title" title="title">
     <p><input type="submit"></p>
     </form>
+    <div class="scroll">
+    {#{% for post in posts %}#}
+        {#<li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>#}
+        {#<li><blockquote>{{ post.body|raw }} </blockquote></li>#}
+        {#<hr>#}
+    {#{% else %}#}
+        {#<li>Постів немає</li>#}
+    {#{% endfor %}#}
+         {{ render(controller(
+        'AppBundle:Post:loadMore'
+    )) }}
+    </div>
+
 {% endblock %}

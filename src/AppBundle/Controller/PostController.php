@@ -37,8 +37,9 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
+        $post = new Post();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(PostType::class);
+        $form = $this->createForm(PostType::class, $post);
         $form->add('save', SubmitType::class, array('label' => 'Save'));
 
         if ($request->getMethod() === 'POST') {
@@ -46,8 +47,6 @@ class PostController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-
-                $post = $form->getData();
                 $em->persist($post);
                 $em->flush();
 
@@ -140,22 +139,40 @@ class PostController extends Controller
     public function searchAction(Request $request)
     {
         $title = $request->query->get('title');
-        $this->getDoctrine()->getRepository('AppBundle:Post')->findByTitleQuery($title);
+        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->findByTitleQuery($title);
 
 
-//
+
 //                $name = $request->query->get('name');
-//        $paginator  = $this->get('knp_paginator');
-//        $pagination = $paginator->paginate(
-//        $this->getDoctrine()->getRepository('AppBundle:Player')->findByNameQuery($name), /* query NOT result */
-//        $request->query->getInt('page', 1)/*page number*/,
-//        5/*limit per page*/
-//        );
-//
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1)/*page number*/,
+        5/*limit per page*/
+        );
+
 
 
         return $this->render('@App/post/search.html.twig', [
             'title' => $title,
+            'pagination' => $pagination,
         ]);
     }
+
+    public function loadMoreAction(Request $request)
+    {
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT a FROM AppBundle:Post a";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+        $query, /* query NOT result */
+        $request->query->getInt('page', 1)/*page number*/,
+        3/*limit per page*/
+    );
+
+    // parameters to template
+    return $this->render('@App/default/more.html.twig', array('pagination' => $pagination ));
+}
 }

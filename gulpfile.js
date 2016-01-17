@@ -19,7 +19,7 @@ gulp.task('images', function () {
 gulp.task('lib-js', function() {
     return gulp.src([
             'bower_components/jquery/dist/jquery.js',
-            'bower_components/bootstrap/dist/js/bootstrap.js'
+            'bower_components/bootstrap/dist/js/bootstrap.js',
         ])
         .pipe(concatJs('app.js'))
         .pipe(minifyJs())
@@ -28,7 +28,9 @@ gulp.task('lib-js', function() {
 
 gulp.task('pages-js', function() {
     return gulp.src([
-            'web-src/js/*.js'
+            'web-src/js/*.js',
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/jscroll/jquery.jscroll.min.js'
         ])
         .pipe(minifyJs())
         .pipe(gulp.dest('web/bundles/app/js/'));
