@@ -18,10 +18,7 @@
             <div class="nav">
                 <nav>
                     <ul>
-                        <li><a href={{ path('index') }} >Головна</a></li>
-                        <li><a href={{ path('admin') }}>Адміністрування</a></li>
-                        <li><a href="{{ path('authors') }}" >Автори</a></li>
-                        <li><a href="{{ path('comment') }}" >Коментарі</a></li>
+                        <li>{{ knp_menu_render('AppBundle:Builder:mainMenu') }}</li>
                     </ul>
                 </nav>
             </div>
