@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
@@ -51,9 +52,8 @@ class Post
     private $category;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=64, unique=true)
      */
     private $slug;
 
@@ -62,6 +62,22 @@ class Post
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="posts")
      */
     private $tags;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+   /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
 
     /**
@@ -210,6 +226,44 @@ class Post
     public function setTags($value)
     {
         $this->tags = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $value
+     * @return $this
+     */
+    public function setCreated($value)
+    {
+        $this->created = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $value
+     * @return $this
+     */
+    public function setUpdated($value)
+    {
+        $this->updated = $value;
 
         return $this;
     }
