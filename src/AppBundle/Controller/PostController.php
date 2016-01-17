@@ -37,7 +37,6 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-//        $post = new Post();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(PostType::class);
         $form->add('save', SubmitType::class, array('label' => 'Save'));
@@ -49,11 +48,7 @@ class PostController extends Controller
             if ($form->isValid()) {
 
                 $post = $form->getData();
-               // $em = $this->getDoctrine()->getManager();
-                $slug = $this->get('app.slugger')->slugify($post->getTitle());
-                $post->setSlug($slug);
                 $em->persist($post);
-//                $em->persist($slug);
                 $em->flush();
 
             return $this->redirectToRoute('admin');
