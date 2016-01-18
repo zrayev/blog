@@ -32,6 +32,12 @@
     </header>
     <div class="menu">
         {% block menu %}
+            <form action="{{ path('post_search') }}">
+            <p><b>Пошук записів:</b></p>
+            <p><input type="text" name="title" title="title">
+            <p><input type="submit"></p>
+            </form>
+            <hr>
             TAG CLOUD
             <hr>
             5 самих популярних статей

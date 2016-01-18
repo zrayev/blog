@@ -18,11 +18,6 @@
         <h2>{{ "now"|date(null, "Europe/Kiev") }}</h2>
 {% endblock %}
 {% block section %}
-    <form action="{{ path('post_search') }}">
-    <p><b>Пошук записів:</b></p>
-    <p><input type="text" name="title" title="title">
-    <p><input type="submit"></p>
-    </form>
     <div class="scroll">
     {#{% for post in posts %}#}
         {#<li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>#}

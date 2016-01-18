@@ -1,7 +1,14 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block title %}Редагування{% endblock %}
-
+{% block javascripts %}
+     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+      tinymce.init({
+        selector: 'textarea'
+      });
+      </script>
+{% endblock javascripts %}
 {% block h2 %}
     <h2>Редагувати</h2>
 {% endblock %}

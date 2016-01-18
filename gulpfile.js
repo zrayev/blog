@@ -9,6 +9,22 @@ gulp.task('less', function() {
         .pipe(gulp.dest('web/bundles/app/css/'));
 });
 
+//gulp.task('css', function() {
+//    return gulp.src([
+//            'web-src/css/*.css'
+//        ])
+//        .pipe(less({compress: true}))
+//        .pipe(gulp.dest('web/bundles/app/css/'));
+//});
+//
+//gulp.task('fonts', function () {
+//    return gulp.src([
+//        'bower_components/bootstrap/fonts/*',
+//        'web-src/fonts/*'
+//    ])
+//        .pipe(gulp.dest('web/bundles/app/fonts/'))
+//});
+
 gulp.task('images', function () {
     return gulp.src([
             'web-src/img/*'
@@ -37,6 +53,7 @@ gulp.task('pages-js', function() {
 });
 
 gulp.task('default', function () {
+    //var tasks = ['less', 'fonts', 'css', 'images', 'lib-js', 'pages-js'];
     var tasks = ['less', 'images', 'lib-js', 'pages-js'];
     tasks.forEach(function (val) {
         gulp.start(val);

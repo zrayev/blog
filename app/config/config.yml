@@ -72,3 +72,20 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             timestampable: true
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    driver: gd
+    filter_sets:
+        cache: ~
+        post_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [810, 400], mode: inbound }
+
+        post_image_small:
+             quality: 100
+             filters:
+                thumbnail: { size: [90, 60], mode: inbound }
