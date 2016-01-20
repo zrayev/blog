@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\PostType;
+use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,7 @@ use AppBundle\Entity\Post;
 class PostController extends Controller
 {
     /**
+     * @Route("/post/{id}", name="post")
      * @return Response
      */
     public function indexAction($id)
@@ -32,6 +34,7 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/post/create", name="post_create")
      * @param Request $request
      * @return Response
      */
@@ -60,6 +63,7 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/post/edit/{id}", name="post_edit")
      * @param $id
      * @param Request $request
      * @return Response
@@ -98,6 +102,7 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/post/delete/{id}", name="post_delete")
      * @param $id
      * @param Request $request
      * @return Response
@@ -136,14 +141,16 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @Route("search/post", name="post_search")
+     * @param Request $request
+     * @return Response
+     */
     public function searchAction(Request $request)
     {
         $title = $request->query->get('title');
         $query = $this->getDoctrine()->getRepository('AppBundle:Post')->findByTitleQuery($title);
 
-
-
-//                $name = $request->query->get('name');
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
         $query,
@@ -151,14 +158,17 @@ class PostController extends Controller
         5/*limit per page*/
         );
 
-
-
         return $this->render('@App/post/search.html.twig', [
             'title' => $title,
             'pagination' => $pagination,
         ]);
     }
 
+    /**
+     * @Route("/posts/show", name="show_post")
+     * @param Request $request
+     * @return Response
+     */
     public function loadMoreAction(Request $request)
     {
         $em    = $this->get('doctrine.orm.entity_manager');

@@ -8,7 +8,7 @@
     <p>{{ post.body|raw }}</p>
     <p>Автор: {{ post.author.name }}</p>
     <p>Категорія: {{ post.category }}</p>
-    <p>foo{{ post.tags|join(', ') }}</p>
+    <p>Теги: {{ post.tags|join(', ') }}</p>
     {#{{ include('@App/comment/index.html.twig', {comment.body: 'comment.body'}) }}#}
     {#<li><a href="{{ path('comment_create') }}">Коментувати</a></li>#}
 {% endblock %}

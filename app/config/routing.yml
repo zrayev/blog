@@ -1,6 +1,6 @@
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
-blog:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix:   /
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

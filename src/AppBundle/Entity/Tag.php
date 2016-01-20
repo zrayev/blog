@@ -46,7 +46,7 @@ class Tag
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -78,38 +78,39 @@ class Tag
     }
 
     /**
-     * @return string
-     */
-    public function getPosts()
-    {
-        return $this->posts;
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setPosts($value)
-    {
-        $this->posts = $value;
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
      * @param Post $value
      * @return $this
      */
     public function addPost($value)
     {
         $this->posts[] = $value;
+        $value->addTag($this);
 
         return $this;
     }
-}
 
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+}

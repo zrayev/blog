@@ -95,7 +95,7 @@ class Post
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -151,6 +151,22 @@ class Post
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
      * @return string
      */
     public function getSlug()
@@ -159,74 +175,22 @@ class Post
     }
 
     /**
-     * @param string $value
-     * @return $this
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Post
      */
-    public function setSlug($value)
+    public function setCreated($created)
     {
-        $this->slug = $value;
+        $this->created = $created;
 
         return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setCategory($value)
-    {
-        $this->category = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setAuthor($value)
-    {
-        $this->author = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return Tag[]
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param Tag[] $value
-     * @return $this
-     */
-    public function setTags($value)
-    {
-        $this->tags = $value;
-
-        return $this;
-    }
-
-    /**
+     * Get created
+     *
      * @return \DateTime
      */
     public function getCreated()
@@ -235,17 +199,22 @@ class Post
     }
 
     /**
-     * @param \DateTime $value
-     * @return $this
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Post
      */
-    public function setCreated($value)
+    public function setUpdated($updated)
     {
-        $this->created = $value;
+        $this->updated = $updated;
 
         return $this;
     }
 
     /**
+     * Get updated
+     *
      * @return \DateTime
      */
     public function getUpdated()
@@ -254,15 +223,53 @@ class Post
     }
 
     /**
-     * @param \DateTime $value
-     * @return $this
+     * Set author
+     *
+     * @param \AppBundle\Entity\Author $author
+     *
+     * @return Post
      */
-    public function setUpdated($value)
+    public function setAuthor(\AppBundle\Entity\Author $author = null)
     {
-        $this->updated = $value;
+        $this->author = $author;
 
         return $this;
     }
+
+    /**
+     * Get author
+     *
+     * @return \AppBundle\Entity\Author
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Post
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
 
     /**
      * @param Tag $value
@@ -275,5 +282,24 @@ class Post
 
         return $this;
     }
-}
 
+    /**
+     * Remove tag
+     *
+     * @param \AppBundle\Entity\Tag $tag
+     */
+    public function removeTag(\AppBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+}

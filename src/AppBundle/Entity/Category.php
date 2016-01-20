@@ -53,10 +53,11 @@ class Category
         $this->posts = new ArrayCollection();
     }
 
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -88,30 +89,22 @@ class Category
     }
 
     /**
-     * Set post
+     * Set slug
      *
-     * @param string $post
+     * @param string $slug
      *
      * @return Category
      */
-    public function setPost($post)
+    public function setSlug($slug)
     {
-        $this->post = $post;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get post
+     * Get slug
      *
-     * @return string
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
-
-    /**
      * @return string
      */
     public function getSlug()
@@ -120,33 +113,37 @@ class Category
     }
 
     /**
-     * @param string $value
-     * @return $this
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Category
      */
-    public function setSlug($value)
+    public function addPost(\AppBundle\Entity\Post $post)
     {
-        $this->slug = $value;
+        $this->posts[] = $post;
 
         return $this;
     }
 
     /**
-     * @return Post[]
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {
         return $this->posts;
-    }
-
-    /**
-     * @param Post[] $value
-     * @return $this
-     */
-    public function setPosts($value)
-    {
-        $this->posts = $value;
-
-        return $this;
     }
 
     public function __toString()
@@ -154,4 +151,3 @@ class Category
         return $this->getName();
     }
 }
-

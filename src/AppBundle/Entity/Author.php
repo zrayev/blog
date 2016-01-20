@@ -48,7 +48,7 @@ class Author
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -80,7 +80,33 @@ class Author
     }
 
     /**
-     * @return Post[]
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Author
+     */
+    public function addPost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {
@@ -88,16 +114,8 @@ class Author
     }
 
     /**
-     * @param Post[] $value
-     * @return $this
+     * @return string
      */
-    public function setPosts($value)
-    {
-        $this->posts = $value;
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getName();
