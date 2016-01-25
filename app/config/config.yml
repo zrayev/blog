@@ -35,6 +35,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_horizontal_layout.html.twig']
+
 
 # Doctrine Configuration
 doctrine:
@@ -89,3 +92,4 @@ liip_imagine:
              quality: 100
              filters:
                 thumbnail: { size: [90, 60], mode: inbound }
+

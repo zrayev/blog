@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -28,6 +29,12 @@ class Author
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", length=64, unique=true)
+     */
+    private $slug;
 
     /**
      * @var Post[]
@@ -111,6 +118,25 @@ class Author
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $value
+     * @return $this
+     */
+    public function setSlug($value)
+    {
+        $this->slug = $value;
+
+        return $this;
     }
 
     /**

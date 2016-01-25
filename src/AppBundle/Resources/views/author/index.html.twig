@@ -4,10 +4,22 @@
     <h2>Всі автори:</h2>
 {% endblock %}
 {% block section %}
-    {% for author in authors %}
-        <li><a href="{{ path('author', {'id': author.id}) }}">{{ author.name }}</a></li>
-        {#<li>{{ author.name }}</li>#}
-    {% else %}
-        <li>Немає авторів. Ви будете першими)</li>
-    {% endfor %}
+    <h2>Оберіть автора:</h2>
+     <table border="2px">
+        <tr>
+            <td>
+            {% for author in authors %}
+                <li>{{ loop.index }} </li>
+            {% endfor %}
+            </td>
+            <td>
+            {% for author in authors %}
+                <li><a href="{{ path('author', {'id': author.id}) }}">{{ author.name }}</a></li>
+            {% else %}
+                <li>Немає авторів. Ви будете першими)</li>
+            {% endfor %}
+            </td>
+        </tr>
+    </table>
+
 {% endblock %}

@@ -11,47 +11,32 @@
         <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}"/>
 
         <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
-                <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
+        <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
         {% block javascripts %}{% endblock %}
+
     </head>
-    <header>
-        {% block header %}
-        <h1>Мій блог</h1>
-        {% endblock %}
-            <div class="nav">
-                <nav>
-                    <ul>
-                        <li>{{ knp_menu_render('AppBundle:Builder:mainMenu') }}</li>
-                    </ul>
-                </nav>
+    <body>
+        {% block navbar %}{% include 'AppBundle::navbar.html.twig' %}{% endblock%}
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                {% block section %}
+                {%endblock section %}
+                </div>
+
+         {% block sidebar %}{% include 'AppBundle::sidebar.html.twig' %}{% endblock%}
             </div>
-            <div class="h2">
-                {% block h2 %}
-                {% endblock %}
-            </div>
-    </header>
-    <div class="menu">
-        {% block menu %}
-            <form action="{{ path('post_search') }}">
-            <p><b>Пошук записів:</b></p>
-            <p><input type="text" name="title" title="title">
-            <p><input type="submit"></p>
-            </form>
-            <hr>
-            TAG CLOUD
-            <hr>
-            5 самих популярних статей
-            <hr>
-            5 останніх коментарів
-        {% endblock %}
-    </div>
-    <section>
-        {% block section %}{% endblock %}
-    </section>
-    <footer>
-        {% block footer %}
-            Copyright © Dmitry Zrayev
-        {% endblock %}
-    </footer>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                       {% block footer %}
+                            Copyright © Dmitry Zrayev
+                       {% endblock %}
+                    </div>
+                </div>
+            </footer>
+        </div>
+     </body>
 </html>
 

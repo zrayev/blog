@@ -56,6 +56,18 @@ class Post
     private $category;
 
     /**
+     * @var string
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="post", cascade={"persist", "remove"})
+     */
+    private $comments;
+
+    /**
+     * @var float
+     * @ORM\Column(name="rating", type="float", nullable=true)
+     */
+    private $rating;
+
+    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=64, unique=true)
      */
@@ -90,6 +102,7 @@ class Post
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -301,5 +314,72 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param float $rating
+     *
+     * @return Post
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->getBody();
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

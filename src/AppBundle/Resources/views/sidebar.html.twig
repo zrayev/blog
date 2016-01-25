@@ -1,0 +1,24 @@
+    <div class="col-md-4">
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
+                   облако тегів (клацнувши на один з тегів - показуємо всі пости де є цей тег),
+
+
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>5 самих популярних статей (по середній оцінці з можливістю перейти на саму статтю)</p>
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>5 останніх коментарів до любого з постів, якщо клацнути на коментар - попадаємо на відповідний пост</p>
+                    {{ render(controller('AppBundle:Comment:last' )) }}
+                </div>
+
+    </div>

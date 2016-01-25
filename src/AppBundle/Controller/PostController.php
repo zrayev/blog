@@ -3,22 +3,28 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\PostType;
-use FOS\RestBundle\Controller\Annotations\Route;
+use AppBundle\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Comment;
 
 class PostController extends Controller
 {
+
     /**
      * @Route("/post/{id}", name="post")
+     * @param $id
+     * @param Request $request
      * @return Response
      */
-    public function indexAction($id)
+    public function indexAction($id, Request $request)
     {
-        $post = $this->getDoctrine()
+        $em = $this->getDoctrine()->getManager();
+        $post = $em
             ->getRepository('AppBundle:Post')
             ->find($id);
 
@@ -28,13 +34,31 @@ class PostController extends Controller
             );
         }
 
-        return $this->render('AppBundle:post:index.html.twig', [
-            'post' => $post,
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment, array(
+            'method' => 'POST',
+        ));
+        $form->add('Submit', SubmitType::class);
+
+        if ($request->getMethod() === 'POST') {
+            $form->handlerequest($request);
+
+            if ($form->isValid()) {
+                $post->addComment($comment);
+                $em->persist($comment);
+                $em->flush();
+            }
+        }
+        return $this->render('@App/post/index.html.twig', [
+                 'post' => $post,
+                'form' => $form->createView(),
         ]);
+
     }
 
     /**
-     * @Route("/post/create", name="post_create")
+     * @Route("/post/create/", name="post_create")
      * @param Request $request
      * @return Response
      */

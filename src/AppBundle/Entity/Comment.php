@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Comment
@@ -24,64 +25,48 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="user", type="string", length=255)
-     */
-    private $user;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="body", type="string", length=255)
+     * @ORM\Column(name="body", type="text")
      */
     private $body;
 
     /**
-     * @var string
+     * @var
      *
-     * @ORM\Column(name="rating", type="integer", length=255)
+     * @ORM\Column(name="rating", type="smallint")
      */
     private $rating;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="post", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments")
      */
     private $post;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param string $user
-     *
-     * @return Comment
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -111,7 +96,7 @@ class Comment
     /**
      * Set rating
      *
-     * @param string $rating
+     * @param integer $rating
      *
      * @return Comment
      */
@@ -125,7 +110,7 @@ class Comment
     /**
      * Get rating
      *
-     * @return string
+     * @return integer
      */
     public function getRating()
     {
@@ -133,22 +118,74 @@ class Comment
     }
 
     /**
-     * @return string
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Comment
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Comment
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Comment
+     */
+    public function setPost(\AppBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\Post
      */
     public function getPost()
     {
         return $this->post;
     }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function setPost($value)
-    {
-        $this->post = $value;
-
-        return $this;
-    }
 }
-

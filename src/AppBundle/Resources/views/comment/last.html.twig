@@ -1,0 +1,6 @@
+{% for comment in comments %}
+    {% if comment.id > 42 %}
+    <h5><b>{{ comment.body }}</b></h5>
+    <h6>{{ comment.updated|date("M d, Y  h:i A") }}</h6>
+    {% endif %}
+{% endfor %}

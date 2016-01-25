@@ -17,7 +17,6 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Головна', array('route' => 'index'));
         $menu->addChild('Адміністрування', array('route' => 'admin'));
         $menu->addChild('Автори', array('route' => 'authors'));
-        $menu->addChild('Коментарі', array('route' => 'comment'));
 
 
         // access services from the container!

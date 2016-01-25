@@ -2,11 +2,8 @@
 
 {% block title %} Зміни {% endblock %}
 
-{% block h2 %}
-    <h2>Змінити пост</h2>
-{% endblock %}
-
 {% block section %}
+    <h2>Змінити пост</h2>
     {% for post in posts %}
         <li><a href="{{ path('post', {'id': post.id}) }}">{{ post.title }} </a></li>
         <li><a href="{{ path('post_edit', {'id': post.id}) }}">редагувати</a></li>

@@ -18,7 +18,10 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, [
+                'attr' => array('autofocus' => true),
+                'label' => 'Заголовок',
+            ])
             ->add('body', TextareaType::class)
             ->add('author', EntityType::class,[
                 'class' => 'AppBundle\Entity\Author',
@@ -31,8 +34,9 @@ class PostType extends AbstractType
 
             ->add('tags', EntityType::class,[
                 'class' => 'AppBundle\Entity\Tag',
-//                'choice_label' => 'name'
+                'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }

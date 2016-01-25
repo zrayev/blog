@@ -2,31 +2,32 @@
 
 namespace AppBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class CommentType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', TextType::class)
-            ->add('body', TextType::class)
-            ->add('rating', IntegerType::class)
-            ->add('post', EntityType::class,[
-                'class' => 'AppBundle\Entity\Post',
-                'choice_label' => 'title'
-            ])
-        ;
+            ->add('rating', ChoiceType::class, array(
+                'choices' => array(
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5
+                ),
+                'multiple' => false,
+                'expanded' => true,
+                'label' => 'Оцінка посту'
+            ))
+            ->add('body', TextareaType::class, array(
+                'label' => 'Залишити коментар:'
+            ));
     }
 
     /**

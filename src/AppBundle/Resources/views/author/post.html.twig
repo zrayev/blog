@@ -1,13 +1,10 @@
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block h2 %}
-    <h2>{{ author.name }}</h2>
-{% endblock %}
 {% block section %}
-    <li>{{ author.name }}</li>
-
-    {#{% for post in author.posts %}#}
-        {#<li>{{ post }}</li>#}
-    {#{% endfor %}#}
-
+    <h2>Пости автора: {{ author.name }}</h2>
+    {% for post in author.posts %}
+        {{ loop.index }}. <a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a> <br>
+        {% else %}
+        <li>Автор ще не опублікував жодної статті!</li>
+    {% endfor %}
 {% endblock %}
