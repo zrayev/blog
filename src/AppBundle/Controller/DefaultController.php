@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +15,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $posts = $this->getDoctrine()
-            ->getRepository('AppBundle:Post')
-            ->findAll();
-
+        $postService = $this->container->get('app.posts');
+        $posts = $postService-> Posts();
+        
         return $this->render('AppBundle:default:index.html.twig', [
             'posts'=>$posts,
         ]);
