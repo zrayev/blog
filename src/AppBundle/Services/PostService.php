@@ -9,6 +9,11 @@ class PostService
     protected $doctrine;
     protected $posts;
 
+    /**
+     * PostService constructor.
+     * @param RegistryInterface $doctrine
+     * @param $posts
+     */
     public function __construct(RegistryInterface $doctrine, $posts)
     {
         $this->posts = $posts;

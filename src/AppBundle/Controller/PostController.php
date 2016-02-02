@@ -169,18 +169,9 @@ class PostController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $title = $request->query->get('title');
-        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->findByTitleQuery($title);
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-        $query,
-        $request->query->getInt('page', 1)/*page number*/,
-        5/*limit per page*/
-        );
-
+        $paginationService = $this->container->get('app.pagination_search_query');
+        $pagination = $paginationService->paginationSearchQuery($request);
         return $this->render('@App/post/search.html.twig', [
-            'title' => $title,
             'pagination' => $pagination,
         ]);
     }
@@ -192,18 +183,21 @@ class PostController extends Controller
      */
     public function loadMoreAction(Request $request)
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AppBundle:Post a";
-        $query = $em->createQuery($dql);
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1)/*page number*/,
-        3/*limit per page*/
-    );
-
+//        $em    = $this->get('doctrine.orm.entity_manager');
+//        $dql   = "SELECT a FROM AppBundle:Post a";
+//        $query = $em->createQuery($dql);
+//
+//        $paginator  = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate(
+//        $query, /* query NOT result */
+//        $request->query->getInt('page', 1)/*page number*/,
+//        3/*limit per page*/
+//    );
+        $paginationService = $this->container->get('app.pagination_load_more_query');
+        $pagination = $paginationService->paginationLoadMoreQuery($request);
     // parameters to template
-    return $this->render('@App/default/more.html.twig', array('pagination' => $pagination ));
+    return $this->render('@App/default/more.html.twig', [
+        'pagination' => $pagination,
+        ]);
 }
 }

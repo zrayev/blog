@@ -10,6 +10,12 @@ class ChoiceService
     protected $post;
     protected $id;
 
+    /**
+     * ChoiceService constructor.
+     * @param RegistryInterface $doctrine
+     * @param $post
+     * @param $id
+     */
     public function __construct(RegistryInterface $doctrine, $post, $id)
     {
         $this->id = $id;
@@ -17,6 +23,10 @@ class ChoiceService
         $this->doctrine = $doctrine;
     }
 
+    /**
+     * @param $id
+     * @return \AppBundle\Entity\Post|null|object
+     */
     public function choicePost($id)
     {
          $post = $this->doctrine->getManager()

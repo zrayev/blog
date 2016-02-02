@@ -4,12 +4,6 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-        <!--<service id="app.twig_extension"-->
-                 <!--class="AppBundle\Twig\AppExtension"-->
-                 <!--public="false">-->
-            <!--<tag name="twig.extension" />-->
-            <!--<argument key="doctrine" type="service" id="doctrine"/>-->
-        <!--</service>-->
         <services>
         <service id="app.show_posts"
                  class="AppBundle\Services\PostService">
@@ -22,6 +16,18 @@
             <argument key="doctrine" type="service" id="doctrine"/>
             <argument key="post" type="string" />
             <argument key="id" type="string" />
+        </service>
+
+        <service id="app.pagination_search_query"
+                 class="AppBundle\Services\PaginationService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="knpPaginator" type="service" id="knp_paginator"/>
+        </service>
+
+        <service id="app.pagination_load_more_query"
+                 class="AppBundle\Services\PaginationService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="knpPaginator" type="service" id="knp_paginator"/>
         </service>
 
     </services>
