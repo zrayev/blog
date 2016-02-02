@@ -16,13 +16,6 @@
 
 {% block section %}
     <div class="scroll">
-    {#{% for post in posts %}#}
-        {#<li><a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a></li>#}
-        {#<li><blockquote>{{ post.body|raw }} </blockquote></li>#}
-        {#<hr>#}
-    {#{% else %}#}
-        {#<li>Постів немає</li>#}
-    {#{% endfor %}#}
          {{ render(controller(
         'AppBundle:Post:loadMore'
     )) }}

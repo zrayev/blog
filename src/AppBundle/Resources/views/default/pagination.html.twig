@@ -1,6 +1,6 @@
 {% if pageCount > 3 %}
     {% if next is defined %}
-        <span class="next" style="display: none">
+        <span class="next" >
             <a href="{{ path('show_post', query|merge({(pageParameterName): next})) }}">&gt;</a>
         </span>
     {% endif %}
