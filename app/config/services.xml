@@ -11,10 +11,18 @@
             <!--<argument key="doctrine" type="service" id="doctrine"/>-->
         <!--</service>-->
         <services>
-        <service id="app.posts"
+        <service id="app.show_posts"
                  class="AppBundle\Services\PostService">
-                <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="doctrine" type="service" id="doctrine"/>
             <argument key="posts" type="string" />
         </service>
+
+        <service id="app.choice_post"
+                 class="AppBundle\Services\ChoiceService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="post" type="string" />
+            <argument key="id" type="string" />
+        </service>
+
     </services>
 </container>

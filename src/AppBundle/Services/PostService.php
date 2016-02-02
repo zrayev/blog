@@ -8,15 +8,18 @@ class PostService
 {
     protected $doctrine;
     protected $posts;
+
     public function __construct(RegistryInterface $doctrine, $posts)
     {
         $this->posts = $posts;
         $this->doctrine = $doctrine;
     }
-    public function Posts()
+
+    /**
+     * @return array
+     */
+    public function showPosts()
     {
-//        $em = $this->doctrine->getManager();
-//        $posts = $em->getRepository('AppBundle:Post')->showPosts($this->posts);
          $posts = $this->doctrine->getManager()
             ->getRepository('AppBundle:Post')
             ->findAll();

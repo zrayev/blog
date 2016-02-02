@@ -94,10 +94,8 @@ class PostController extends Controller
      */
     public function editAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em
-            ->getRepository('AppBundle:Post')
-            ->find($id);
+        $choiceService = $this->container->get('app.choice_post');
+        $post = $choiceService-> choicePost($id);
 
         if (!$post) {
             throw $this->createNotFoundException(
@@ -105,6 +103,7 @@ class PostController extends Controller
             );
         }
 
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(PostType::class, $post);
         $form->add('save', SubmitType::class, array('label' => 'Edit'));
 
@@ -133,17 +132,15 @@ class PostController extends Controller
      */
     public function deleteAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em
-            ->getRepository('AppBundle:Post')
-            ->find($id);
+        $choiceService = $this->container->get('app.choice_post');
+        $post = $choiceService-> choicePost($id);
 
         if (!$post) {
             throw $this->createNotFoundException(
                 'No post found for id ' . $id
             );
         }
-
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(PostType::class, $post);
         $form->add('save', SubmitType::class, array('label' => 'Delete'));
 

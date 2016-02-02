@@ -15,9 +15,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $postService = $this->container->get('app.posts');
-        $posts = $postService-> Posts();
-        
+        $postService = $this->container->get('app.show_posts');
+        $posts = $postService-> showPosts();
+
         return $this->render('AppBundle:default:index.html.twig', [
             'posts'=>$posts,
         ]);
