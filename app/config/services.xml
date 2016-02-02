@@ -15,7 +15,7 @@
                  class="AppBundle\Services\ChoiceService">
             <argument key="doctrine" type="service" id="doctrine"/>
             <argument key="post" type="string" />
-            <argument key="id" type="string" />
+            <argument key="slug" type="string" />
         </service>
 
         <service id="app.pagination_search_query"

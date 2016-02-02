@@ -8,30 +8,34 @@ class ChoiceService
 {
     protected $doctrine;
     protected $post;
-    protected $id;
+    protected $slug;
 
     /**
      * ChoiceService constructor.
      * @param RegistryInterface $doctrine
      * @param $post
-     * @param $id
+     * @param $slug
      */
-    public function __construct(RegistryInterface $doctrine, $post, $id)
+    public function __construct(RegistryInterface $doctrine, $post, $slug)
     {
-        $this->id = $id;
+        $this->slug = $slug;
         $this->post = $post;
         $this->doctrine = $doctrine;
     }
 
     /**
-     * @param $id
+     * @param $slug
      * @return \AppBundle\Entity\Post|null|object
      */
-    public function choicePost($id)
+    public function choicePost($slug)
     {
          $post = $this->doctrine->getManager()
             ->getRepository('AppBundle:Post')
-            ->find($id);
+            ->findOneBy(
+                [
+                    'slug' => $slug,
+                ]
+            );
         return $post;
     }
 }

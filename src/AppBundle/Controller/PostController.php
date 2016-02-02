@@ -15,46 +15,48 @@ use AppBundle\Entity\Comment;
 class PostController extends Controller
 {
 
+
     /**
-     * @Route("/post/{id}", name="post")
-     * @param $id
+     * @Route("/post/{slug}", name="post")
      * @param Request $request
+     * @param $slug
      * @return Response
      */
-    public function indexAction($id, Request $request)
+    public function indexAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $post = $em
-            ->getRepository('AppBundle:Post')
-            ->find($id);
-
-        if (!$post) {
-            throw $this->createNotFoundException(
-                'No post found for id ' . $id
+        if ($slug) {
+            $post = $em->getRepository('AppBundle:Post')->findOneBy(
+                array(
+                    'slug' => $slug,
+                )
             );
-        }
-
-
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment, array(
-            'method' => 'POST',
-        ));
-        $form->add('Submit', SubmitType::class);
-
-        if ($request->getMethod() === 'POST') {
-            $form->handlerequest($request);
-
-            if ($form->isValid()) {
-                $post->addComment($comment);
-                $em->persist($comment);
-                $em->flush();
+            if (!$post) {
+                throw $this->createNotFoundException(
+                    'Unable to find Post..'
+                );
             }
-        }
-        return $this->render('@App/post/index.html.twig', [
-                 'post' => $post,
-                'form' => $form->createView(),
-        ]);
 
+            $comment = new Comment();
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->add('Submit', SubmitType::class);
+
+            if ($request->getMethod() === 'POST') {
+                $form->handlerequest($request);
+
+                if ($form->isValid()) {
+                    $post->addComment($comment);
+                    $em->persist($comment);
+                    $em->flush();
+                }
+            }
+
+            return $this->render('@App/post/index.html.twig', [
+                'post' => $post,
+                'form' => $form->createView(),
+            ]);
+
+        }
     }
 
     /**
@@ -87,19 +89,19 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/edit/{id}", name="post_edit")
-     * @param $id
+     * @Route("/post/edit/{slug}", name="post_edit")
+     * @param $slug
      * @param Request $request
      * @return Response
      */
-    public function editAction($id, Request $request)
+    public function editAction($slug, Request $request)
     {
         $choiceService = $this->container->get('app.choice_post');
-        $post = $choiceService-> choicePost($id);
+        $post = $choiceService-> choicePost($slug);
 
         if (!$post) {
             throw $this->createNotFoundException(
-                'No post found for id ' . $id
+                'Unable to find Post..'
             );
         }
 
@@ -125,19 +127,19 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/delete/{id}", name="post_delete")
-     * @param $id
+     * @Route("/post/delete/{slug}", name="post_delete")
+     * @param $slug
      * @param Request $request
      * @return Response
      */
-    public function deleteAction($id, Request $request)
+    public function deleteAction($slug, Request $request)
     {
         $choiceService = $this->container->get('app.choice_post');
-        $post = $choiceService-> choicePost($id);
+        $post = $choiceService-> choicePost($slug);
 
         if (!$post) {
             throw $this->createNotFoundException(
-                'No post found for id ' . $id
+                'Unable to find Post..'
             );
         }
         $em = $this->getDoctrine()->getManager();
@@ -183,21 +185,11 @@ class PostController extends Controller
      */
     public function loadMoreAction(Request $request)
     {
-//        $em    = $this->get('doctrine.orm.entity_manager');
-//        $dql   = "SELECT a FROM AppBundle:Post a";
-//        $query = $em->createQuery($dql);
-//
-//        $paginator  = $this->get('knp_paginator');
-//        $pagination = $paginator->paginate(
-//        $query, /* query NOT result */
-//        $request->query->getInt('page', 1)/*page number*/,
-//        3/*limit per page*/
-//    );
         $paginationService = $this->container->get('app.pagination_load_more_query');
         $pagination = $paginationService->paginationLoadMoreQuery($request);
-    // parameters to template
-    return $this->render('@App/default/more.html.twig', [
-        'pagination' => $pagination,
+
+        return $this->render('@App/default/more.html.twig', [
+            'pagination' => $pagination,
         ]);
-}
+    }
 }

@@ -24,16 +24,17 @@ class AuthorController extends Controller
     }
 
     /**
-     * @Route("/authors/{id}", name="author")
-     * @param $id
+     * @Route("/authors/{slug}", name="author")
+     * @param $slug
      * @return Response
      */
-    public function postAction($id)
+    public function postAction($slug)
     {
         $author = $this->getDoctrine()
             ->getRepository('AppBundle:Author')
-            ->find($id);
-
+            ->findOneBy([
+                    'slug' => $slug
+                ]);
         return $this->render('@App/author/post.html.twig',[
             'author' => $author,
 

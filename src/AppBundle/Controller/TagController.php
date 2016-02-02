@@ -5,21 +5,22 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Tag;
 
-class AuthorController extends Controller
+class TagController extends Controller
 {
     /**
-     * @Route("/authors", name="authors")
+     * @Route("/tags", name="tags")
      * @return Response
      */
     public function indexAction()
     {
-        $authors = $this->getDoctrine()
-            ->getRepository('AppBundle:Author')
+        $tags = $this->getDoctrine()
+            ->getRepository('AppBundle:Tag')
             ->findAll();
 
-        return $this->render('@App/author/index.html.twig', [
-            'authors' => $authors,
+        return $this->render('@App/tag/index.html.twig', [
+            'tags' => $tags,
         ]);
     }
 }

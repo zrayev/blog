@@ -3,7 +3,7 @@
 {% block section %}
     <h2>Пости автора: {{ author.name }}</h2>
     {% for post in author.posts %}
-        {{ loop.index }}. <a href="{{ path('post', {'id': post.id }) }}">{{ post.title }}</a> <br>
+        {{ loop.index }}. <a href="{{ path('post', {'slug': post.slug }) }}">{{ post.title }}</a> <br>
         {% else %}
         <li>Автор ще не опублікував жодної статті!</li>
     {% endfor %}

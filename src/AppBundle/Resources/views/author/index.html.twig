@@ -14,7 +14,7 @@
             </td>
             <td>
             {% for author in authors %}
-                <li><a href="{{ path('author', {'id': author.id}) }}">{{ author.name }}</a></li>
+                <li><a href="{{ path('author', {'slug': author.slug}) }}">{{ author.name }}</a></li>
             {% else %}
                 <li>Немає авторів. Ви будете першими)</li>
             {% endfor %}
