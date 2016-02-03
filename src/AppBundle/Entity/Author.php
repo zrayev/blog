@@ -26,13 +26,13 @@ class Author
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
     /**
      * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(name="slug", type="string", length=64, unique=true)
+     * @ORM\Column(name="slug", type="string", length=80, unique=true)
      */
     private $slug;
 

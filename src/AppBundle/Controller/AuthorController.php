@@ -24,7 +24,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * @Route("/authors/{slug}", name="author")
+     * @Route("/author/{slug}", name="author")
      * @param $slug
      * @return Response
      */

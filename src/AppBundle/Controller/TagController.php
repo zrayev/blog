@@ -13,14 +13,32 @@ class TagController extends Controller
      * @Route("/tags", name="tags")
      * @return Response
      */
-    public function indexAction()
+    public function tagCloudAction()
     {
         $tags = $this->getDoctrine()
             ->getRepository('AppBundle:Tag')
             ->findAll();
 
-        return $this->render('@App/tag/index.html.twig', [
+        return $this->render('@App/widgets/tagCloud.html.twig', [
             'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * @Route("/tag/{slug}", name="tag_show")
+     * @param $slug
+     * @return Response
+     */
+    public function postAction($slug)
+    {
+        $tag = $this->getDoctrine()
+            ->getRepository('AppBundle:Tag')
+            ->findOneBy([
+                    'slug' => $slug
+                ]);
+        return $this->render('@App/tag/post.html.twig',[
+            'tag' => $tag,
+
         ]);
     }
 }

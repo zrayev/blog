@@ -2,12 +2,20 @@
 {% block section %}
     <h2>{{ post.title }}</h2>
     <p>{{ post.body|raw }}</p>
-    <p>Автор: {{ post.author.name }}</p>
-    <p>Категорія: {{ post.category }}</p>
-    <p>Теги: {{ post.tags|join(', ') }}</p>
-    <p>Створено: {{ post.created|date("m-d-Y H:i:s a") }}</p>
-    <p>Останнє редагування: {{ post.updated|date("m-d-Y H:i:s a") }}</p>
-
+    <p>
+        Категорія: {{ post.category }}<br>
+        Автор: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
+        {#Теги: {{ post.tags|join(', ') }}<br>#}
+        Теги:
+        {% for tag in post.tags %}
+            <a href="{{ path('tag_show', {'slug': tag.slug}) }}"> #{{ tag.name }}</a>.
+        {% endfor %}
+        <br>
+        <small>
+        Створено: {{ post.created|date("m-d-Y H:i:s a") }}<br>
+        Останнє редагування: {{ post.updated|date("m-d-Y H:i:s a") }}
+        </small>
+    </p>
 
     <!-- Comments Form -->
     <div class="well">
@@ -16,16 +24,32 @@
         </div>
     </div>
 
-    {#<!-- Comment -->#}
-    {% for comment in post.comments %}
+    <!-- Comment -->
+    <p>Коментарі</p>
+{% for comment in post.comments %}
         <div class="media">
             <div class="media-body">
-                <h4 class="media-heading">Author
-                    <small>{{ post.created|date("M d, Y  h:i A") }}</small>
+                <h4 class="media-heading">
+                    anon.
+                        Rating {{ comment.rating }}
                 </h4>
-                {{ post.body }}
+                <small>{{ comment.created|date("M d, Y  h:i A") }}</small><br>
+                {{ comment.body }}
             </div>
         </div>
+        <hr>
     {% endfor %}
 
+
+
+       {#{% for comment in post.comments %}#}
+        {#<div class="media">#}
+            {#<div class="media-body">#}
+                {#<h4 class="media-heading">Author#}
+                    {#<small>{{ post.created|date("M d, Y  h:i A") }}</small>#}
+                {#</h4>#}
+                {#{{ post.body }}#}
+            {#</div>#}
+        {#</div>#}
+    {#{% endfor %}#}
 {% endblock %}

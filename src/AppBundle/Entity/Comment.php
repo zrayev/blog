@@ -38,7 +38,7 @@ class Comment
 
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comments", cascade={"persist", "remove"})
      */
     private $post;
 

@@ -14,8 +14,6 @@ use AppBundle\Entity\Comment;
 
 class PostController extends Controller
 {
-
-
     /**
      * @Route("/post/{slug}", name="post")
      * @param Request $request
@@ -38,24 +36,23 @@ class PostController extends Controller
             }
 
             $comment = new Comment();
-            $form = $this->createForm(CommentType::class, $comment);
-            $form->add('Submit', SubmitType::class);
+            $form = $this->createForm(CommentType::class, $comment, [
+                    'method' => 'POST'
+                ]);
+            $form->add('Відправити', SubmitType::class);
+            $form->handlerequest($request);
 
-            if ($request->getMethod() === 'POST') {
-                $form->handlerequest($request);
-
-                if ($form->isValid()) {
-                    $post->addComment($comment);
-                    $em->persist($comment);
-                    $em->flush();
-                }
+            if ($form->isValid()) {
+                $post->addComment($comment);
+                $em->persist($comment);
+                $em->persist($post);
+                $em->flush();
             }
 
             return $this->render('@App/post/index.html.twig', [
                 'post' => $post,
                 'form' => $form->createView(),
             ]);
-
         }
     }
 

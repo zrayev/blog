@@ -75,9 +75,9 @@ class Post
 
     /**
      * @var Tag[]
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="posts")
      */
-    private $tags;
+    protected $tags;
 
     /**
      * @var \DateTime $created
@@ -283,15 +283,14 @@ class Post
         return $this->category;
     }
 
-
     /**
-     * @param Tag $value
+     * @param Tag $tag
      * @return $this
      */
-    public function addTag($value)
+    public function addTag(\AppBundle\Entity\Tag $tag)
     {
-        $this->tags[] = $value;
-        $value->addPost($this);
+        $this->tags[] = $tag;
+//        $tag->addPost($this);
 
         return $this;
     }
