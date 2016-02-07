@@ -172,7 +172,7 @@ class Comment
      *
      * @return Comment
      */
-    public function setPost(\AppBundle\Entity\Post $post = null)
+    public function setPost($post)
     {
         $this->post = $post;
 

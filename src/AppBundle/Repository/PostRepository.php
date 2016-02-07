@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Post;
 
 /**
  * PostRepository
@@ -16,6 +17,19 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.title LIKE :title')
             ->setParameter(':title', "%$title%")
             ->getQuery()
+        ;
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function findPopularPost()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.rating', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
         ;
     }
 }

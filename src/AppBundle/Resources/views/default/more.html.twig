@@ -1,6 +1,6 @@
 {% for post in pagination %}
     <li><a href="{{ path('post', {'slug': post.slug }) }}"><h2>{{ post.title }}</h2></a></li>
-    <p>{{ post.body|raw }}</p>
+    <p>{{ post.body|raw }}
     Автор: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
     Теги:
         {% for tag in post.tags %}
@@ -14,6 +14,6 @@
     <hr>
 {% endfor %}
 
-<div class="navigation">
+<div class="scroll">
     {{ knp_pagination_render(pagination, 'AppBundle:default:pagination.html.twig') }}
 </div>

@@ -5,14 +5,16 @@
         <title>
             {% block title %}Blog{% endblock %}
         </title>
-        {% block stylesheets %}{% endblock %}
-
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}"/>
-
-        <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
-        <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
-        {% block javascripts %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/jqcloud.min.css') }}"/>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+            <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
+            <script src="{{ asset('bundles/app/js/jqcloud.min.js') }}"></script>
+        {% endblock %}
 
     </head>
     <body>

@@ -9,13 +9,14 @@ gulp.task('less', function() {
         .pipe(gulp.dest('web/bundles/app/css/'));
 });
 
-//gulp.task('css', function() {
-//    return gulp.src([
-//            'web-src/css/*.css'
-//        ])
-//        .pipe(less({compress: true}))
-//        .pipe(gulp.dest('web/bundles/app/css/'));
-//});
+gulp.task('css', function() {
+    return gulp.src([
+        'bower_components/jqcloud2/dist/jqcloud.min.css'
+            //'web-src/css/*.css'
+        ])
+        //.pipe(less({compress: true}))
+        .pipe(gulp.dest('web/bundles/app/css/'));
+});
 //
 //gulp.task('fonts', function () {
 //    return gulp.src([
@@ -47,6 +48,7 @@ gulp.task('pages-js', function() {
             'web-src/js/*.js',
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/jscroll/jquery.jscroll.min.js'
+            //'bower_components/jqcloud2/dist/jqcloud.min.js'
         ])
         .pipe(minifyJs())
         .pipe(gulp.dest('web/bundles/app/js/'));
@@ -54,7 +56,7 @@ gulp.task('pages-js', function() {
 
 gulp.task('default', function () {
     //var tasks = ['less', 'fonts', 'css', 'images', 'lib-js', 'pages-js'];
-    var tasks = ['less', 'images', 'lib-js', 'pages-js'];
+    var tasks = ['less', 'images', 'css', 'lib-js', 'pages-js'];
     tasks.forEach(function (val) {
         gulp.start(val);
     });

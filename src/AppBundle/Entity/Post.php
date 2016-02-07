@@ -351,11 +351,11 @@ class Post
     /**
      * Add comment
      *
-     * @param \AppBundle\Entity\Comment $comment
+     * @param Comment $comment
      *
      * @return Post
      */
-    public function addComment(\AppBundle\Entity\Comment $comment)
+    public function addComment($comment)
     {
         $this->comments[] = $comment;
 
@@ -365,9 +365,9 @@ class Post
     /**
      * Remove comment
      *
-     * @param \AppBundle\Entity\Comment $comment
+     * @param Comment $comment
      */
-    public function removeComment(\AppBundle\Entity\Comment $comment)
+    public function removeComment($comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -375,7 +375,7 @@ class Post
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Comment[]
      */
     public function getComments()
     {

@@ -1,6 +1,10 @@
 {% extends 'AppBundle::base.html.twig' %}
-
+{% block javascripts %}
+    {{ parent() }}
+    {{ include("@App/infiniteScroll.html.twig") }}
+{% endblock %}
 {% block section %}
     <h2>Результати пошуку:</h2>
+
     {% include '@App/default/more.html.twig' %}
 {% endblock %}

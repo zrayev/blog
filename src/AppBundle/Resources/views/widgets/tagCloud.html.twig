@@ -1,3 +1,23 @@
-{% for tag in tags %}
-    <a href="{{ path('tag_show', {'slug': tag.slug}) }}">{{ tag.name }}</a>
-{% endfor %}
+<style>
+    .demo {
+      margin:0 auto;
+      width:280px;
+      height:380px;
+    }
+</style>
+
+<div id="keywords" class="demo">
+</div>
+
+{% set tags = get_tag_for_weights() %}
+<script>
+    $('document').ready(function() {
+        var words = [
+            {%- for key, value in tags -%}
+                {text: "{{ key }}", weight: {{ value.count }}, link:"{{  path('tag_show', {'slug': value.slug}) }}" }
+                {%- if not loop.last -%}, {%- endif -%}
+            {%- endfor -%}
+        ];
+        $('#keywords').jQCloud(words);
+    });
+</script>

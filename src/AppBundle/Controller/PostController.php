@@ -17,43 +17,34 @@ class PostController extends Controller
     /**
      * @Route("/post/{slug}", name="post")
      * @param Request $request
-     * @param $slug
+     * @param Post $post
      * @return Response
      */
-    public function indexAction(Request $request, $slug)
+    public function indexAction(Request $request, Post $post)
     {
         $em = $this->getDoctrine()->getManager();
-        if ($slug) {
-            $post = $em->getRepository('AppBundle:Post')->findOneBy(
-                array(
-                    'slug' => $slug,
-                )
-            );
-            if (!$post) {
-                throw $this->createNotFoundException(
-                    'Unable to find Post..'
-                );
-            }
 
-            $comment = new Comment();
-            $form = $this->createForm(CommentType::class, $comment, [
-                    'method' => 'POST'
-                ]);
-            $form->add('Відправити', SubmitType::class);
-            $form->handlerequest($request);
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->add('Відправити', SubmitType::class);
+        $form->handlerequest($request);
 
-            if ($form->isValid()) {
-                $post->addComment($comment);
-                $em->persist($comment);
-                $em->persist($post);
-                $em->flush();
-            }
+        if ($form->isValid()) {
+            $post->addComment($comment);
+            $comment->setPost($post);
+            $em->persist($comment);
+            $em->persist($post);
+            $em->flush();
 
-            return $this->render('@App/post/index.html.twig', [
-                'post' => $post,
-                'form' => $form->createView(),
+             return $this->redirectToRoute('post', [
+                'slug' =>$post->getSlug(),
             ]);
         }
+
+       return $this->render('@App/post/index.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -170,6 +161,7 @@ class PostController extends Controller
     {
         $paginationService = $this->container->get('app.pagination_search_query');
         $pagination = $paginationService->paginationSearchQuery($request);
+
         return $this->render('@App/post/search.html.twig', [
             'pagination' => $pagination,
         ]);

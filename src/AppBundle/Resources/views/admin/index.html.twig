@@ -4,6 +4,9 @@
 
 {% block section %}
     <h2>Адміністрування</h2>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Username: {{ app.user.username }}</p>
+    {% endif %}
     <table border="2px">
         <tr>
             <td>Додати запис</td>
@@ -11,11 +14,15 @@
         </tr>
         <tr>
             <td>Редагувати чи видалити запис</td>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
             <td><a href="{{ path('posts_refactor') }}">обрати</a></td>
+            {% endif %}
         </tr>
         <tr>
             <td>Переглянути всі пости автора</td>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
             <td><a href="{{ path('authors') }}">обрати</a></td>
+            {% endif %}
         </tr>
     </table>
 {% endblock section %}

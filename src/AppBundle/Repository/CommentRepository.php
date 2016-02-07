@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Comment;
 
 /**
  * CommentRepository
@@ -10,4 +11,16 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return Comment[]
+     */
+    public function findLastComment()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.created', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

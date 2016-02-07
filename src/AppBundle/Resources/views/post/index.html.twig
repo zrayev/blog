@@ -5,6 +5,7 @@
     <p>
         Категорія: {{ post.category }}<br>
         Автор: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
+        Рейтинг: {{ post.rating }}<br>
         {#Теги: {{ post.tags|join(', ') }}<br>#}
         Теги:
         {% for tag in post.tags %}
