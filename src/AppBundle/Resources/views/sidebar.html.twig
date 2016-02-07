@@ -1,7 +1,7 @@
     <div class="col-md-4">
         <!-- Blog Categories Well -->
+
         <div class="well">
-            <h4>облако тегів</h4>
         {% include 'AppBundle:widgets:tagCloud.html.twig' %}
          {#{% render "ApplicationDefaultBundle:Widgets:tagCloud" %}#}
             <!-- /.row -->
@@ -9,13 +9,13 @@
 
         <!-- Side Widget Well -->
         <div class="well">
-            <h4>5 самих популярних статей</h4>
+            <h4>найпопулярніші статті</h4>
             {{ render_popular_post() }}
         </div>
 
         <!-- Side Widget Well -->
         <div class="well">
-            <h4>5 останніх коментарів</h4>
+            <h4>останні коментарі</h4>
             {{ render_last_comment() }}
         </div>
 

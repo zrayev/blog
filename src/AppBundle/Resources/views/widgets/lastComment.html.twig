@@ -1,5 +1,6 @@
 {% for comment in comments %}
     <p>
-{{ comment.body }}
+        {{ comment.updated|date("m-d-Y H:i:s a") }}
+        <a href="{{ path('post', {'slug': comment.post.slug}) }}">{{ comment.body }}</a>
     </p>
 {% endfor %}

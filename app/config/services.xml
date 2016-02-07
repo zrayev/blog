@@ -59,5 +59,6 @@
                  class="AppBundle\Services\PopularPostProvider">
             <argument key="em" type="service" id="doctrine.orm.entity_manager"/>
         </service>
+
     </services>
 </container>

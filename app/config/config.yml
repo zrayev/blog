@@ -81,7 +81,7 @@ liip_imagine:
     resolvers:
        default:
           web_path: ~
-    driver: gd
+    driver: imagick
     filter_sets:
         cache: ~
         post_image:
@@ -93,4 +93,9 @@ liip_imagine:
              quality: 100
              filters:
                 thumbnail: { size: [90, 60], mode: inbound }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
 

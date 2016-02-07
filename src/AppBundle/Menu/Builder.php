@@ -15,6 +15,7 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->addChild('Головна', array('route' => 'index'));
         $menu->addChild('Адміністрування', array('route' => 'admin'));
+        $menu->addChild('Про автора', array('route' => 'about'));
 
         return $menu;
     }
