@@ -60,5 +60,10 @@
             <argument key="em" type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
+        <service id="acme_user.password_resetting" class="AppBundle\EventListener\PasswordResettingListener">
+             <tag name="kernel.event_subscriber"/>
+             <argument type="service" id="router"/>
+        </service>
+
     </services>
 </container>

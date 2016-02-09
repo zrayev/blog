@@ -46,8 +46,8 @@ class CommentListener
         }
 
         $posts = $this->updatedPosts;
-        $this->updatedPosts = [];
 
+        $this->updatedPosts = [];
         foreach ($posts as $post) {
             $comments = $post->getComments();
             $sum = 0;
@@ -56,8 +56,9 @@ class CommentListener
                 $sum += $comment->getRating();
             }
 
-            $post->setRating($sum / count($comments));
+         //   $post->setRating($sum / count($comments));
         }
+
 
         $em = $args->getEntityManager();
         $em->flush($posts);

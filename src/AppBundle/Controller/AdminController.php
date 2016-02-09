@@ -10,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class AdminController extends Controller
 {
     /**
-     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/admin", name="admin")
      * @return Response
      */
@@ -20,7 +19,6 @@ class AdminController extends Controller
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/post/refactor", name="posts_refactor")
      * @return Response
      */

@@ -16,6 +16,7 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Головна', array('route' => 'index'));
         $menu->addChild('Адміністрування', array('route' => 'admin'));
         $menu->addChild('Про автора', array('route' => 'about'));
+        $menu->addChild('login', array('route' => 'fos_user_security_login'));
 
         return $menu;
     }
