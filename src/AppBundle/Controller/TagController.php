@@ -10,7 +10,7 @@ use AppBundle\Entity\Tag;
 class TagController extends Controller
 {
     /**
-     * @Route("/tags", name="tags")
+     * @Route("/{_locale}/tags", name="tags")
      * @return Response
      */
     public function tagCloudAction()
@@ -25,7 +25,7 @@ class TagController extends Controller
     }
 
     /**
-     * @Route("/tag/{slug}", name="tag_show")
+     * @Route("/{_locale}/tag/{slug}", name="tag_show")
      * @param $slug
      * @return Response
      */

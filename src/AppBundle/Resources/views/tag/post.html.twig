@@ -14,8 +14,8 @@
             {{ post.body }}
         <p>Теги: {{ post.tags|join(', ') }}<br>
             <small>
-            Створено: {{ post.created|date("m-d-Y H:i:s a") }}<br>
-            Останнє редагування: {{ post.updated|date("m-d-Y H:i:s a") }}
+            {{ 'created' | trans }}: {{ post.created|date("m-d-Y H:i:s a") }}<br>
+            {{ 'updated' | trans }}: {{ post.updated|date("m-d-Y H:i:s a") }}
             </small>
         </p>
 

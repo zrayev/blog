@@ -9,13 +9,13 @@
 
         <!-- Side Widget Well -->
         <div class="well">
-            <h4>найпопулярніші статті</h4>
+            <h4>{{ 'widgets.popularPosts' | trans }}</h4>
             {{ render_popular_post() }}
         </div>
 
         <!-- Side Widget Well -->
         <div class="well">
-            <h4>останні коментарі</h4>
+            <h4> {{ 'widgets.lastComments' | trans }}</h4>
             {{ render_last_comment() }}
         </div>
 

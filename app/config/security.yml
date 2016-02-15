@@ -4,12 +4,18 @@ security:
         AppBundle\Entity\User: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+        ROLE_AUTHOR:      [ROLE_USER]
+        ROLE_MODERATOR:   [ROLE_AUTHOR]
+        ROLE_ADMIN:       [ROLE_MODERATOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     providers:
         fos_userbundle:
                 id: fos_user.user_provider.username
+
 
     firewalls:
         main:
@@ -17,8 +23,22 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                check_path: fos_user_security_check
 
-            logout:       true
+                # the user is redirected here when they need to log in
+                # the default would be /login
+                login_path: /%locale%/login
+
+                # We will fix this shortly, but for now, the default
+                # would be '/', but we would need it to be e.g.
+                # /en/
+                default_target_path: /en/
+
+            logout:
+                # default is /logout
+                path: /%locale%/logout
+                # default is /
+                target: /%locale%/
             anonymous:    true
 
     access_control:

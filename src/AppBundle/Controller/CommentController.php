@@ -16,7 +16,7 @@ class CommentController extends Controller
 
 
     /**
-     * @Route("/comment/last", name="last_comment")
+     * @Route("/{_locale}/comment/last", name="last_comment")
      * @return Response
      */
     public function lastAction()

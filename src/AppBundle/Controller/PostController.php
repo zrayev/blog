@@ -15,7 +15,7 @@ use AppBundle\Entity\Comment;
 class PostController extends Controller
 {
     /**
-     * @Route("/post/{slug}", name="post")
+     * @Route("/{_locale}/post/{slug}", name="post")
      * @param Request $request
      * @param Post $post
      * @return Response
@@ -48,7 +48,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/create/", name="post_create")
+     * @Route("/{_locale}/post/create/", name="post_create")
      * @param Request $request
      * @return Response
      */
@@ -77,7 +77,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/edit/{slug}", name="post_edit")
+     * @Route("/{_locale}/post/edit/{slug}", name="post_edit")
      * @param $slug
      * @param Request $request
      * @return Response
@@ -115,7 +115,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/delete/{slug}", name="post_delete")
+     * @Route("/{_locale}/post/delete/{slug}", name="post_delete")
      * @param $slug
      * @param Request $request
      * @return Response
@@ -153,7 +153,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("search/post", name="post_search")
+     * @Route("/{_locale}/search/post", name="post_search")
      * @param Request $request
      * @return Response
      */
@@ -168,7 +168,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/posts/show", name="show_post")
+     * @Route("/{_locale}/posts/show", name="show_post")
      * @param Request $request
      * @return Response
      */

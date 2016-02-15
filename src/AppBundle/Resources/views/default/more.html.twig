@@ -1,14 +1,14 @@
 {% for post in pagination %}
     <li><a href="{{ path('post', {'slug': post.slug }) }}"><h2>{{ post.title }}</h2></a></li>
-    <p>{{ post.body|raw }}
-    Автор: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
-    Теги:
+    <p>{{ post.body|raw }} <br>
+    {{ 'post.author' | trans }}: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
+    {{ 'post.tags' | trans }}:
         {% for tag in post.tags %}
             <a href="{{ path('tag_show', {'slug': tag.slug}) }}"> #{{ tag.name }}</a>.
         {% endfor %}<br>
         <small>
-        Створено: {{ post.created|date("m-d-Y H:i:s a") }}<br>
-        Останнє редагування: {{ post.updated|date("m-d-Y H:i:s a") }}
+        {{ 'created' | trans }}: {{ post.created|date("m-d-Y H:i:s a") }}<br>
+        {{ 'updated' | trans }}: {{ post.updated|date("m-d-Y H:i:s a") }}
         </small>
     </p>
     <hr>

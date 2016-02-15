@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthorController extends Controller
 {
     /**
-     * @Route("/authors", name="authors")
+     * @Route("/{_locale}/authors", name="authors")
      * @return Response
      */
     public function indexAction()
@@ -24,7 +24,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * @Route("/author/{slug}", name="author")
+     * @Route("/{_locale}/author/{slug}", name="author")
      * @param $slug
      * @return Response
      */
