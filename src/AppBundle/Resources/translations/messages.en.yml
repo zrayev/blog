@@ -29,4 +29,3 @@ security:
     register:
         registration: Registration, or
         signIn: Sign In
-        

@@ -10,8 +10,12 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                    {#{{ knp_menu_render('AppBundle:Builder:mainMenu') }}#}
-                    {{ knp_menu_render('AppBundle:Builder:mainMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
+                    {% if is_granted('ROLE_USER') %}
+                       {{ knp_menu_render('AppBundle:Builder:userMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
+                    {% else %}
+                       {{ knp_menu_render('AppBundle:Builder:anonMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
+                    {% endif %}
+                    {#{{ knp_menu_render('AppBundle:Builder:mainMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}#}
 
                     </ul>
                 <form class="navbar-form navbar-right" role="search" action="{{ path('post_search') }}">
