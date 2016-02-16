@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            {% block title %}Blog{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/app.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/jqcloud.min.css') }}"/>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+            <link rel="script" href="{{ asset('bundles/app/js/app.js') }}"/>
+            <script src="{{ asset('bundles/app/js/jqcloud.min.js') }}"></script>
+        {% endblock %}
+
+    </head>
+    <body>
+        {% block navbar %}{% include 'AppBundle::navbar.html.twig' %}{% endblock%}
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                {% block section %}
+                {%endblock section %}
+                </div>
+
+         {% block sidebar %}{% include 'AppBundle::sidebar.html.twig' %}{% endblock%}
+            </div>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                       {% block footer %}
+                            Copyright 2015-2016 © Dmitry Zrayev
+                       {% endblock %}
+                    </div>
+                </div>
+            </footer>
+        </div>
+     </body>
+</html>
+

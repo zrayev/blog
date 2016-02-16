@@ -1,0 +1,16 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %} Зміни {% endblock %}
+
+{% block section %}
+    <h2>Змінити пост</h2>
+    {% for post in posts %}
+        <li><a href="{{ path('post', {'slug': post.slug}) }}">{{ post.title }} </a></li>
+        <li><a href="{{ path('post_edit', {'slug': post.slug}) }}">редагувати</a></li>
+        <li><a href="{{ path('post_delete', {'slug': post.slug}) }}">видалити</a></li>
+    <hr>
+    {% else %}
+        <li>Немає чого змінювати!</li>
+    {% endfor %}
+    </table>
+{% endblock section %}

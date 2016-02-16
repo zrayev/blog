@@ -1,0 +1,25 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block section %}
+    <h2><b>#{{ tag.name }}</b></h2>
+    {% for post in tag.posts %}
+
+        {#<a href="{{ path('post', {'slug': post.slug }) }}">#}
+        {#{{ post.title }}#}
+        {#</a> <br>#}
+
+            <b>{{ loop.index }}.</b>
+            <a href="{{ path('post', {'slug': post.slug }) }}">
+        {{ post.title }} </a><br>
+            {{ post.body }}
+        <p>Теги: {{ post.tags|join(', ') }}<br>
+            <small>
+            {{ 'created' | trans }}: {{ post.created|date("m-d-Y H:i:s a") }}<br>
+            {{ 'updated' | trans }}: {{ post.updated|date("m-d-Y H:i:s a") }}
+            </small>
+        </p>
+
+        {% else %}
+        <li>Немає статтей з таким тегом!</li>
+    {% endfor %}
+{% endblock %}

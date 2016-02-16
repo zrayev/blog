@@ -1,0 +1,7 @@
+{% for post in posts %}
+    <p>
+        <a href="{{ path('post', {'slug': post.slug}) }}">{{ post.title }}</a><br>
+        {{ 'post.rating' | trans }} {{ post.rating }}
+
+    </p>
+{% endfor %}

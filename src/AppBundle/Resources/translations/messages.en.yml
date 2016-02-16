@@ -1,0 +1,45 @@
+post:
+    category: Category
+    author: Author
+    rating: Rating
+    postRating: Post rating
+    tags: Tags
+    comments: Comments
+submit: Submit
+created: Created
+updated: Updated
+widgets:
+    lastComments: Last comments
+    popularPosts: Popular Posts
+menu:
+    home: Home
+    admin: Admin
+    about: About
+    login: Login
+    logout: Logout
+security:
+    login:
+        one: Please Log In, or
+        signUp: Sign Up
+        signIn: Sign In
+        remember: Remember me
+        goTo: go to blog
+        create: Create an account
+    register:
+        registration: Registration, or
+        signIn: Sign In
+search:
+    text: Enter text
+    btn: search
+    result: Results search
+form:
+    comment:
+        rating: Choose a rating:
+        body: Comment:
+    post:
+        title: Title
+        body: Text
+        author: Author
+        category: Category
+        tags: Tags
+

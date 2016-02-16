@@ -2,15 +2,16 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: services.xml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-    locale: en
+#parameters:
+#    locale: en
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -35,6 +36,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_horizontal_layout.html.twig']
+
 
 # Doctrine Configuration
 doctrine:
@@ -65,3 +69,37 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            sluggable: true
+            timestampable: true
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    driver: imagick
+    filter_sets:
+        cache: ~
+        post_image:
+            quality: 100
+            filters:
+                thumbnail: { size: [810, 400], mode: inbound }
+
+        post_image_small:
+             quality: 100
+             filters:
+                thumbnail: { size: [90, 60], mode: inbound }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
+knp_menu:
+    twig:
+        template: AppBundle:menu:knp_menu.html.twig
+

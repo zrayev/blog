@@ -1,0 +1,30 @@
+AppBundle\Entity\Post:
+  post_{1..15}:
+    title (unique): <text(20)>
+    body: <text(200)>
+    author : @author*
+    category: @category*
+    rating: <numberBetween(1, 5)>
+#    tag: 3x @tag*
+#    comments: 2x @comment*
+
+AppBundle\Entity\Category:
+  category_{1..10}:
+    name: <word()>
+    posts: 4x @post*
+
+AppBundle\Entity\Tag:
+  tag_{1..20}:
+    name (unique): <word()>
+    posts: 10x @post*
+
+AppBundle\Entity\Comment:
+  comment_{1..100}:
+    rating: <numberBetween(1, 5)>
+    body: <text(100)>
+    post: @post*
+
+AppBundle\Entity\Author:
+  author_{1..4}:
+    name: <name()>
+    posts: 4x @post*

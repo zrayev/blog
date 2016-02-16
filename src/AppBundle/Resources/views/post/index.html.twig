@@ -1,0 +1,44 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block section %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body|raw }}</p>
+    <p>
+        {{ 'post.category' | trans }}: {{ post.category }}<br>
+        {{ 'post.author' | trans }}: <a href="{{ path('author', {'slug': post.author.slug}) }}">{{ post.author.name }}</a><br>
+        {{ 'post.rating' | trans }}: {{ post.rating }}<br>
+        {#Теги: {{ post.tags|join(', ') }}<br>#}
+        {{ 'post.tags' | trans }}:
+        {% for tag in post.tags %}
+            <a href="{{ path('tag_show', {'slug': tag.slug}) }}"> #{{ tag.name }}</a>.
+        {% endfor %}
+        <br>
+        <small>
+        {{ 'created' | trans }}: {{ post.created|date("m-d-Y H:i:s a") }}<br>
+        {{ 'updated' | trans }}: {{ post.updated|date("m-d-Y H:i:s a") }}
+        </small>
+    </p>
+    {% if is_granted('ROLE_USER') %}
+    <!-- Comments Form -->
+    <div class="well">
+        <div class="form-group">
+            {{ form(form) }}
+        </div>
+    </div>
+    {% endif %}
+    <!-- Comment -->
+    <p>{{ 'post.comments' | trans }}</p>
+{% for comment in post.comments %}
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading">
+                    anon.
+                        {{ 'post.rating' | trans }} {{ comment.rating }}
+                </h4>
+                <small>{{ comment.created|date("M d, Y  h:i A") }}</small><br>
+                {{ comment.body }}
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

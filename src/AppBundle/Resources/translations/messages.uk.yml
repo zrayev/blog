@@ -1,0 +1,44 @@
+post:
+    category: Категорія
+    author: Автор
+    rating: Рейтинг
+    postRating: Оцінка посту
+    tags: Ключові слова
+    comments: Коментарі
+submit: Відправити
+created: Створено
+updated: Останнє редагування
+widgets:
+    lastComments: Останні коментарі
+    popularPosts: Популярні статті
+menu:
+    home: Головна
+    admin: Адміністрування
+    about: Про автора
+    login: Вхід
+    logout: Вихід
+security:
+    login:
+        one:  Будь ласка, увійдіть або
+        signUp: Реєстрація
+        signIn: Вхід
+        remember:  Запам'ятати мене
+        goTo: до блогу
+        create: Створити обліковий запис
+    register:
+        registration: Реєстрація, чи
+        signIn: Вхід
+search:
+    text: Введіть текст
+    btn: пошук
+    result: Результати пошуку
+form:
+    comment:
+        rating: Виберіть оцінку:
+        body: Коментар:
+    post:
+        title: Заголовок
+        body: Текст
+        author: Автор
+        category: Категорія
+        tags: Ключові слова

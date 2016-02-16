@@ -1,0 +1,15 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include("@App/infiniteScroll.html.twig") }}
+{% endblock %}
+
+{% block section %}
+    <div class="scroll">
+         {{ render(controller(
+        'AppBundle:Post:loadMore'
+    )) }}
+    </div>
+
+{% endblock %}

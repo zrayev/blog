@@ -1,0 +1,11 @@
+<script src="{{ asset('bundles/app/js/jquery.jscroll.min.js') }}"></script>
+<script>
+    $('document').ready(function () {
+        $('.scroll').jscroll({
+            loadingHtml: '<img src="{{ asset('bundles/app/img/ajax-loader.gif') }}" alt="Loading" /> Loading...',
+            padding: 20,
+            nextSelector: '.next a',
+            autoTrigger: true
+        });
+    });
+</script>

@@ -1,0 +1,21 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %} Адміністрування {% endblock %}
+
+{% block section %}
+    <h2>Адміністрування</h2>
+    <table border="2px">
+        <tr>
+            <td>Додати запис</td>
+            <td><a href="{{ path('post_create') }}"> додати </a></td>
+        </tr>
+        <tr>
+            <td>Редагувати чи видалити запис</td>
+            <td><a href="{{ path('posts_refactor') }}">обрати</a></td>
+        </tr>
+        <tr>
+            <td>Переглянути всі пости автора</td>
+            <td><a href="{{ path('authors') }}">обрати</a></td>
+        </tr>
+    </table>
+{% endblock section %}

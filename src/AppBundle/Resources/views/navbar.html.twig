@@ -1,0 +1,31 @@
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('index') }}">Мій блог</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    {% if is_granted('ROLE_USER') %}
+                       {{ knp_menu_render('AppBundle:Builder:userMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
+                    {% else %}
+                       {{ knp_menu_render('AppBundle:Builder:anonMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
+                    {% endif %}
+
+                    </ul>
+                <form class="navbar-form navbar-right" role="search" action="{{ path('post_search') }}">
+                    <div class="form-group">
+                        <input name="title" title="title" type="text" class="form-control" placeholder="{{ 'search.text' | trans }}">
+                    </div>
+                    <button type="submit" class="btn btn-default">{{ 'search.btn' | trans }}</button>
+
+                </form>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>

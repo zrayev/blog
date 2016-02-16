@@ -1,0 +1,9 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block section %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Username: {{ app.user.username }}</p>
+    {% endif %}
+
+    <img src="{{ asset('bundles/app/img/about.jpg' )| imagine_filter('post_image') }}">
+
+{% endblock %}

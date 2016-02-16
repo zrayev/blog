@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+        <services>
+        <service id="app.show_posts"
+                 class="AppBundle\Services\PostService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="posts" type="string" />
+        </service>
+
+        <service id="app.choice_post"
+                 class="AppBundle\Services\ChoiceService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="post" type="string" />
+            <argument key="slug" type="string" />
+        </service>
+
+        <service id="app.pagination_search_query"
+                 class="AppBundle\Services\PaginationService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="knpPaginator" type="service" id="knp_paginator"/>
+        </service>
+
+        <service id="app.pagination_load_more_query"
+                 class="AppBundle\Services\PaginationService">
+            <argument key="doctrine" type="service" id="doctrine"/>
+            <argument key="knpPaginator" type="service" id="knp_paginator"/>
+        </service>
+
+        <service id="app.services.tag_weights_provider"
+                 class="AppBundle\Services\TagWeightsProvider">
+            <argument key="em" type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+         <service id="app.twig_extension"
+                class="AppBundle\Twig\AppExtension"
+                public="false">
+            <argument key="tagWeightsProvider" type="service" id="app.services.tag_weights_provider"/>
+            <argument key="lastCommentProvider" type="service" id="app.services.last_comment_provider"/>
+            <argument key="popularPostProvider" type="service" id="app.services.popular_post_provider"/>
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="app.services.last_comment_provider"
+                 class="AppBundle\Services\LastCommentProvider">
+            <argument key="em" type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+         <service id="my.listener"
+                  class="AppBundle\EventListener\CommentListener">
+            <tag name="doctrine.event_listener" event="postFlush" />
+            <tag name="doctrine.event_listener" event="postPersist" />
+        </service>
+
+        <service id="app.services.popular_post_provider"
+                 class="AppBundle\Services\PopularPostProvider">
+            <argument key="em" type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="acme_user.password_resetting" class="AppBundle\EventListener\PasswordResettingListener">
+             <tag name="kernel.event_subscriber"/>
+             <argument type="service" id="router"/>
+        </service>
+
+    </services>
+</container>

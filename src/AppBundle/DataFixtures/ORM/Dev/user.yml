@@ -1,0 +1,14 @@
+AppBundle\Entity\User:
+    user1:
+      username : admin
+      email: <email()>
+      enabled: true
+      password: $2a$04$Uttgff.iC8oULJMTKucH2.MEx.lYsk/tkWK1zL1lEwPZ6vCoVw1oG  #    password: admin
+      roles: [ROLE_SUPER_ADMIN]
+
+    user2:
+      username : user
+      email: <email()>
+      enabled: true
+      password: $2a$04$HI2We5KIAlnkCIIRMDpt.u00kvswCrKPEw27x.Azv.QYVvffwz8ka  #    password: user
+      roles: [ROLE_ADMIN]
