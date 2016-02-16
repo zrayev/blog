@@ -24,10 +24,14 @@ class CommentType extends AbstractType
                 ),
                 'multiple' => false,
                 'expanded' => true,
-                'label' => 'Оцінка посту'
+                'label' => 'form.comment.rating',
+                'required'=>true,
+                'translation_domain' => 'messages'
             ))
             ->add('body', TextareaType::class, array(
-                'label' => 'Залишити коментар:'
+                'label' => 'form.comment.body',
+                'required'=>true,
+                'translation_domain' => 'messages'
             ));
     }
 

@@ -26,7 +26,7 @@ class PostController extends Controller
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
-        $form->add('Відправити', SubmitType::class);
+        $form->add('Send', SubmitType::class);
         $form->handlerequest($request);
 
         if ($form->isValid()) {

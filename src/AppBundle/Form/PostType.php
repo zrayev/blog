@@ -20,19 +20,32 @@ class PostType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'attr' => array('autofocus' => true),
-                'label' => 'Заголовок',
+                'label' => 'form.post.title',
+                'required'=>true,
+                'translation_domain' => 'messages'
             ])
-            ->add('body', TextareaType::class)
+            ->add('body', TextareaType::class, [
+                'label' => 'form.post.body',
+                'required'=>true,
+                'translation_domain' => 'messages'
+            ])
             ->add('author', EntityType::class,[
+                'label' => 'form.post.author',
                 'class' => 'AppBundle\Entity\Author',
                 'choice_label' => 'name',
+                'required'=>true,
+                'translation_domain' => 'messages'
             ])
             ->add('category', EntityType::class,[
+                'label' => 'form.post.category',
                 'class' => Category::class ,
                 'choice_label' => 'name',
+                'required'=>true,
+                'translation_domain' => 'messages'
             ])
 
             ->add('tags', EntityType::class,[
+                'label' => 'form.post.tags',
                 'class' => 'AppBundle\Entity\Tag',
                 'choice_label' => 'name',
                 'multiple' => true,

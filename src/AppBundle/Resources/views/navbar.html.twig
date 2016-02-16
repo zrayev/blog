@@ -7,7 +7,6 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
 
-
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                     {% if is_granted('ROLE_USER') %}
@@ -15,14 +14,13 @@
                     {% else %}
                        {{ knp_menu_render('AppBundle:Builder:anonMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}
                     {% endif %}
-                    {#{{ knp_menu_render('AppBundle:Builder:mainMenu', {'template': 'AppBundle:menu:knp_menu.html.twig'}) }}#}
 
                     </ul>
                 <form class="navbar-form navbar-right" role="search" action="{{ path('post_search') }}">
                     <div class="form-group">
-                        <input name="title" title="title" type="text" class="form-control" placeholder="Введіть текст">
+                        <input name="title" title="title" type="text" class="form-control" placeholder="{{ 'search.text' | trans }}">
                     </div>
-                    <button type="submit" class="btn btn-default">пошук</button>
+                    <button type="submit" class="btn btn-default">{{ 'search.btn' | trans }}</button>
 
                 </form>
             </div>

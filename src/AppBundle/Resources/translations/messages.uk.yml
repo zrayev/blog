@@ -8,7 +8,6 @@ post:
 submit: Відправити
 created: Створено
 updated: Останнє редагування
-search: Результати пошуку
 widgets:
     lastComments: Останні коментарі
     popularPosts: Популярні статті
@@ -29,3 +28,17 @@ security:
     register:
         registration: Реєстрація, чи
         signIn: Вхід
+search:
+    text: Введіть текст
+    btn: пошук
+    result: Результати пошуку
+form:
+    comment:
+        rating: Виберіть оцінку:
+        body: Коментар:
+    post:
+        title: Заголовок
+        body: Текст
+        author: Автор
+        category: Категорія
+        tags: Ключові слова

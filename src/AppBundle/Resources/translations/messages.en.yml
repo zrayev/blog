@@ -8,7 +8,6 @@ post:
 submit: Submit
 created: Created
 updated: Updated
-search: Results search
 widgets:
     lastComments: Last comments
     popularPosts: Popular Posts
@@ -29,3 +28,18 @@ security:
     register:
         registration: Registration, or
         signIn: Sign In
+search:
+    text: Enter text
+    btn: search
+    result: Results search
+form:
+    comment:
+        rating: Choose a rating:
+        body: Comment:
+    post:
+        title: Title
+        body: Text
+        author: Author
+        category: Category
+        tags: Tags
+
