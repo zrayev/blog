@@ -32,13 +32,13 @@ security:
                 # We will fix this shortly, but for now, the default
                 # would be '/', but we would need it to be e.g.
                 # /en/
-                default_target_path: /en/
+                default_target_path: /
 
             logout:
                 # default is /logout
                 path: /%locale%/logout
                 # default is /
-                target: /%locale%/
+                target: /
             anonymous:    true
 
     access_control:

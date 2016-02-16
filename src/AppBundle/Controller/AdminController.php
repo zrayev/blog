@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/{_locale}/admin", name="admin")
      * @return Response
      */
     public function indexAction()
@@ -19,7 +19,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/post/refactor", name="posts_refactor")
+     * @Route("/{_locale}/post/refactor", name="posts_refactor")
      * @return Response
      */
     public function refactorAction()

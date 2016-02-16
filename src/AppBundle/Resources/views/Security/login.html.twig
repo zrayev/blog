@@ -3,22 +3,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
-                    <h3>Please Log In, or <a href="{{ path('fos_user_registration_register') }}">Sign Up</a></h3>
+                    <h3>{{ 'security.login.one' | trans }} <a href="{{ path('fos_user_registration_register') }}">{{ 'security.login.signUp' | trans }}</a></h3>
                     <div class="account-wall">
                         <form action="{{ path('fos_user_security_check') }}" method="POST" class="form-signin">
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                             <input type="text" id="inputUsernameEmail" name="_username"  placeholder="Email" value="{{ last_username }}" required="required" class="form-control" />
                             <input type="password" class="form-control" id="inputPassword" name="_password" placeholder="Password" required="required" />
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
-                            Sign in</button>
+                            {{ 'security.login.signIn' | trans }}</button>
                         <label class="checkbox pull-left">
                             <input type="checkbox">
-                            Remember me
+                            {{ 'security.login.remember' | trans }}
                         </label>
-                        <a href="{{ path('index') }}" class="pull-right need-help">go to blog </a><span class="clearfix"></span>
+                        <a href="{{ path('index') }}" class="pull-right need-help">{{ 'security.login.goTo' | trans }}</a><span class="clearfix"></span>
                         </form>
                     </div>
-                    <a href="{{ path('fos_user_registration_register') }}" class="text-center new-account">Create an account </a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="text-center new-account">{{ 'security.login.create' | trans }} </a>
               </div>
             </div>
         </div>
